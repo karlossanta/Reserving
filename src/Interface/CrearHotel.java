@@ -17,7 +17,6 @@ import javax.swing.JFrame;
 public class CrearHotel extends javax.swing.JFrame {
 
     private JFrame ventanaAnt;
-    GestionAlojamientos ga;
     /**
      * Creates new form CrearHotel
      */
@@ -210,7 +209,8 @@ public class CrearHotel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        ventanaAnt.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -234,12 +234,13 @@ public class CrearHotel extends javax.swing.JFrame {
         float precio_noche = Integer.parseInt(jTextField7.getText());
         int estrellas = Integer.parseInt(jTextField8.getText());
         boolean pensionCompleta = this.getjCheckBox(jCheckBox3);
-        ga.crearHotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta);
+        GestionAlojamientos.crearHotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+    
     public boolean getjCheckBox(JCheckBox jcb) {
         if (jcb.isSelected()) {
             return true;
@@ -251,7 +252,6 @@ public class CrearHotel extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {                                  
-        // TODO add your handling code here:
         this.setVisible(false);
         ventanaAnt.setVisible(true);
     }  
