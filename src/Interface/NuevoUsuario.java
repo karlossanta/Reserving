@@ -219,7 +219,7 @@ public class NuevoUsuario extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         this.setVisible(false);
-        this.ventanaAnterior.setVisible(false);
+        this.ventanaAnterior.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
