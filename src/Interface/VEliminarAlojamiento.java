@@ -5,8 +5,8 @@
  */
 package Interface;
 
-import Reserving.Alojamiento;
-import Reserving.GestionAlojamientos;
+import alojamiento.Alojamiento;
+import alojamiento.GestionAlojamientos;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 

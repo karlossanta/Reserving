@@ -5,7 +5,7 @@
  */
 package Interface;
 
-import Reserving.GestionAlojamientos;
+import alojamiento.GestionAlojamientos;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
