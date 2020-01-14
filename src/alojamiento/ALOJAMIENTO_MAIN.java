@@ -26,15 +26,16 @@ public class ALOJAMIENTO_MAIN {
         Gerente g4 = new Gerente ("g4", "pass4");
 
         
-        Usuarios.altaCliente(c1);
         Usuarios.altaCliente(c2);
         Usuarios.altaCliente(c3);
         Usuarios.altaGerente(g1);
         Usuarios.altaGerente(g2);
         Usuarios.altaGerente(g3);
         Usuarios.altaGerente(g4);
-        Usuarios.bajaUsuario(c1.getUsuario());
-        Usuarios.bajaUsuario(c2.getUsuario());
+        
+        Usuarios.altaCliente(c1);
+        Cliente x1 = (Cliente) Usuarios.getUsuario(c1.getUsuario());
+        System.out.println(x1.getNombre());
         
         System.out.println(Usuarios.validarUsuario("hola", "adios"));
         

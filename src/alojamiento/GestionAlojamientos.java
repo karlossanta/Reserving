@@ -25,6 +25,9 @@ public class GestionAlojamientos implements Serializable{
     public static ArrayList<Alojamiento> getAlojamientos() {
         return alojamientos;
     } 
+    public static void setAlojamientos(ArrayList<Alojamiento> alojamientos) {
+        GestionAlojamientos.alojamientos = alojamientos;
+    } 
     
     //crear hotel
     public static void crearHotel(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){

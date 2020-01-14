@@ -73,9 +73,13 @@ public class Usuarios implements Serializable{
         return correcto;
     }
     
-    public static void bajaUsuario(String usuario) {
-        if(usuarios.containsKey(usuario))
+    public static boolean bajaUsuario(String usuario) {
+        boolean correcto = false;
+        if(usuarios.containsKey(usuario)) {
             usuarios.remove(usuario);
+            correcto = true;
+        } 
+        return correcto;
     }
     
     public static boolean validarUsuario(String usuario, String contrasenna){

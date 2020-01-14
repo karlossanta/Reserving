@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import alojamiento.Alojamiento;
+import alojamiento.GestionAlojamientos;
 import alojamiento.Usuario;
 import alojamiento.Usuarios;
 import java.io.FileInputStream;
@@ -13,7 +15,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +31,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         cargarUsuarios();
+        
     }
     
     
@@ -41,6 +46,7 @@ public class Login extends javax.swing.JFrame {
             entrada = new ObjectInputStream(fis);
             usuarios = (HashMap<String, Usuario>) entrada.readObject();
             Usuarios.setUsuarios(usuarios);
+            
             fis = new FileInputStream("./ficheros/usuarios/nGerentes.dat");
             nGerentes = (int) entrada.readObject();
             Usuarios.setNGerentes(nGerentes);
@@ -63,7 +69,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
-    
     private void guardarUsuarios() {
         FileOutputStream fos = null;
         ObjectOutputStream salida = null;
@@ -75,6 +80,58 @@ public class Login extends javax.swing.JFrame {
             fos = new FileOutputStream("./ficheros/usuarios/nGerentes.dat");
             salida = new ObjectOutputStream(fos);
             salida.writeObject(Usuarios.getNGerentes());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if(fos!=null) fos.close();
+                if(salida!=null) salida.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    private void cargarAlojamientos() {
+        FileInputStream fis = null;
+        ObjectInputStream entrada = null;
+        ArrayList<Alojamiento> alojamientos;
+        try {
+
+            fis = new FileInputStream("./ficheros/alojamientos/alojamientos.dat");
+            entrada = new ObjectInputStream(fis);
+            alojamientos = (ArrayList<Alojamiento>) entrada.readObject();
+            GestionAlojamientos.setAlojamientos(alojamientos);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (entrada != null) {
+                    entrada.close();
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    private void guardarAlojamientos() {
+        FileOutputStream fos = null;
+        ObjectOutputStream salida = null;
+        try {
+            
+            fos = new FileOutputStream("./ficheros/usuarios/nGerentes.dat");
+            salida = new ObjectOutputStream(fos);
+            salida.writeObject(GestionAlojamientos.getAlojamientos());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
@@ -207,12 +264,14 @@ public class Login extends javax.swing.JFrame {
             Usuario usuario = Usuarios.getUsuario(nombreUsuario);
             System.out.println(usuario.getClass().getSimpleName());
             if (usuario.getClass().getSimpleName().equals("Gerente")) {
-                //TODO: ACCESO A LA APP CON PERMISOS DE GERENTE
+                VMenuAlojamientoGerente vmag = new VMenuAlojamientoGerente(this);
+                vmag.setVisible(true);
+                this.setVisible(false);
             } else {
                 //TODO: ACCESO A LA APP CON PERMISOS DE CLIENTE
             }                
         } else {
-            //TODO: MENSAJE -> Usuario o contraseña no válidos
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -242,6 +301,7 @@ public class Login extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         guardarUsuarios();
+        guardarAlojamientos();
     }//GEN-LAST:event_formWindowClosing
 
     /**
