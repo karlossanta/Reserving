@@ -19,6 +19,8 @@ public class CrearApartamento extends javax.swing.JFrame {
     /**
      * Creates new form CrearHotel
      */
+    
+    
     public CrearApartamento(JFrame ventana) {
         initComponents();
         this.ventanaAnt = ventana;
@@ -265,7 +267,6 @@ public class CrearApartamento extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {                                  
-        // TODO add your handling code here:
         this.setVisible(false);
         ventanaAnt.setVisible(true);
     }  

@@ -246,7 +246,6 @@ public class CrearHotel extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
@@ -261,7 +260,6 @@ public class CrearHotel extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {                                  
-        // TODO add your handling code here:
         this.setVisible(false);
         ventanaAnt.setVisible(true);
     }  
