@@ -75,6 +75,13 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         }
     }
     
+    public static boolean existeAlojamiento(Alojamiento alojamiento) {
+        return alojamientos.contains(alojamiento);
+    }
+    public static boolean existeAlojamiento(String idAlojamiento) {
+        return alojamientos.contains(buscarAlojamiento(alojamientos, idAlojamiento));
+    }
+    
     public  static Alojamiento buscarAlojamiento(ArrayList<Alojamiento> aux, String id) {
         // Crea el agregado.
         Agregado agregado = new AgregadoConcreto(aux);

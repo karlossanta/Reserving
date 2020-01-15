@@ -8,6 +8,7 @@ package Interface;
 import alojamiento.Alojamiento;
 import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
+import alojamiento.GestionReservas;
 import alojamiento.Usuario;
 import alojamiento.Usuarios;
 import java.io.FileInputStream;
@@ -31,6 +32,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        GestionReservas.cargarReservas();
         Usuarios.cargarUsuarios();
         GestionAlojamientos.cargarAlojamientos();
         System.out.println(GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), "1"));
@@ -194,6 +196,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         Usuarios.guardarUsuarios();
         GestionAlojamientos.guardarAlojamientos();
+        GestionReservas.guardarReservas();
     }//GEN-LAST:event_formWindowClosing
 
     /**
