@@ -7,9 +7,13 @@ package Interface;
 
 import alojamiento.AgregadoConcreto;
 import alojamiento.Alojamiento;
+import alojamiento.Apartamento;
+import alojamiento.CasaRural;
 import alojamiento.GestionAlojamientos;
+import alojamiento.Hotel;
 import alojamiento.Iterador;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,10 +31,74 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     public ConsultarAlojamientos(JFrame ventana) {
         initComponents();
         this.ventanaAnt = ventana;
+        iniciarIterador();
+    }
+    
+    private void iniciarIterador() {
         ac = new AgregadoConcreto(GestionAlojamientos.getAlojamientos());
         iteradorAlojamientos = ac.crearIterador();
-        Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.primero();
-        jLabelTipoAlojamiento.setText(alojamiento.getClass().getSimpleName());
+        if (iteradorAlojamientos.hayMas()) {
+            Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.primero();
+            mostrarDatos(alojamiento);
+        } else {
+            JOptionPane.showMessageDialog(this, "No existen Alojamientos.");
+        }
+    }
+    
+    private void mostrarDatos(Alojamiento alojamiento) {
+        String tipoAlojamiento = alojamiento.getClass().getSimpleName();
+        jLabelTipoAlojamiento.setText(tipoAlojamiento);
+        jTextField1.setText(alojamiento.getId());
+        jTextField2.setText(alojamiento.getDireccion());
+        jTextField3.setText(String.valueOf(alojamiento.getPlazas()));
+        jTextField4.setText(alojamiento.paraMascotas() ? "Si" : "No");
+        jTextField5.setText(alojamiento.paraDiscapacitados() ? "Si" : "No");
+        jTextField6.setText(String.valueOf(alojamiento.getValoracion()));
+        jTextField7.setText(String.valueOf(alojamiento.getPrecio_noche()));
+        if (tipoAlojamiento.equals("Apartamento")) {
+            mostrarApartamento((Apartamento) alojamiento);
+        } else if (tipoAlojamiento.equals("CasaRural")) {
+            mostrarCasaRural((CasaRural) alojamiento);
+        } else {
+            mostrarHotel((Hotel) alojamiento);
+        }
+    }
+    
+    private void mostrarApartamento(Apartamento apartamento) {
+        jLabel11.setVisible(true);
+        jTextField10.setVisible(true);
+        jLabel12.setVisible(false);
+        jTextField11.setVisible(false);
+        jLabel9.setText("Habitaciones:");
+        jTextField8.setText(String.valueOf(apartamento.getHabitaciones()));
+        jLabel10.setText("Camas:");
+        jTextField9.setText(String.valueOf(apartamento.getCamas()));
+        jLabel11.setText("Aparcamientos:");
+        jTextField10.setText(apartamento.tieneAparcamiento() ? "Si" : "No");
+    }
+    private void mostrarCasaRural(CasaRural casaRural) {
+        jLabel11.setVisible(true);
+        jTextField10.setVisible(true);
+        jLabel12.setVisible(true);
+        jTextField11.setVisible(true);
+        jLabel9.setText("Piscina:");
+        jTextField10.setText(casaRural.tienePiscina() ? "Si" : "No");
+        jLabel10.setText("Barbacoa:");
+        jTextField10.setText(casaRural.tieneBarbacoa() ? "Si" : "No");
+        jLabel11.setText("Habitaciones:");
+        jTextField8.setText(String.valueOf(casaRural.getHabitaciones()));
+        jLabel12.setText("Camas:");
+        jTextField9.setText(String.valueOf(casaRural.getCamas()));
+    }
+    private void mostrarHotel(Hotel hotel) {
+        jLabel11.setVisible(false);
+        jTextField10.setVisible(false);
+        jLabel12.setVisible(false);
+        jTextField11.setVisible(false);
+        jLabel9.setText("Estrellas:");
+        jTextField8.setText(String.valueOf(hotel.getEstrellas()));
+        jLabel10.setText("Pensión Completa:");
+        jTextField10.setText(hotel.tienePensionCompleta() ? "Si" : "No");
     }
 
     /**
@@ -113,9 +181,25 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
 
         jLabel12.setText("jLabel12");
 
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("<");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText(">");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabelTipoAlojamiento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelTipoAlojamiento.setText("ALOJAMIENTO");
@@ -246,6 +330,30 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         ventanaAnt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_formWindowClosing
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (iteradorAlojamientos.hayMas()) {
+            Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.siguiente();
+            mostrarDatos(alojamiento);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay más alojamientos.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (iteradorAlojamientos.hayMasAtras()) {
+            Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.anterior();
+            mostrarDatos(alojamiento);
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay más alojamientos.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

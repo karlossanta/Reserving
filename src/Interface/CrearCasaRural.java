@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 public class CrearCasaRural extends javax.swing.JFrame {
 
     private JFrame ventanaAnt;
-    GestionAlojamientos ga;
     /**
      * Creates new form CrearHotel
      */
@@ -66,7 +65,12 @@ public class CrearCasaRural extends javax.swing.JFrame {
 
         jLabel3.setText("jLabel3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Añadir Casa Rural");
@@ -230,6 +234,8 @@ public class CrearCasaRural extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        ventanaAnt.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -257,8 +263,14 @@ public class CrearCasaRural extends javax.swing.JFrame {
         boolean barbacoa = this.getjCheckBox(jCheckBox4);
         int nHabitaciones = Integer.parseInt(jTextField10.getText());
         int nCamas = Integer.parseInt(jTextField11.getText());
-        ga.crearCasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, nHabitaciones, nCamas);
+        GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, nHabitaciones, nCamas);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        ventanaAnt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     public boolean getjCheckBox(JCheckBox jcb) {
         if (jcb.isSelected()) {

@@ -30,120 +30,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        cargarUsuarios();
-        
-    }
-    
-    
-    private void cargarUsuarios() {
-        FileInputStream fis = null;
-        ObjectInputStream entrada = null;
-        HashMap<String, Usuario> usuarios;
-        int nGerentes;
-        try {
-
-            fis = new FileInputStream("./ficheros/usuarios/usuarios.dat");
-            entrada = new ObjectInputStream(fis);
-            usuarios = (HashMap<String, Usuario>) entrada.readObject();
-            Usuarios.setUsuarios(usuarios);
-            
-            fis = new FileInputStream("./ficheros/usuarios/nGerentes.dat");
-            nGerentes = (int) entrada.readObject();
-            Usuarios.setNGerentes(nGerentes);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-                if (entrada != null) {
-                    entrada.close();
-                }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    private void guardarUsuarios() {
-        FileOutputStream fos = null;
-        ObjectOutputStream salida = null;
-        try {
-            fos = new FileOutputStream("./ficheros/usuarios/usuarios.dat");
-            salida = new ObjectOutputStream(fos);
-            salida.writeObject(Usuarios.getUsuarios());
-            
-            fos = new FileOutputStream("./ficheros/usuarios/nGerentes.dat");
-            salida = new ObjectOutputStream(fos);
-            salida.writeObject(Usuarios.getNGerentes());
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if(fos!=null) fos.close();
-                if(salida!=null) salida.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    
-    private void cargarAlojamientos() {
-        FileInputStream fis = null;
-        ObjectInputStream entrada = null;
-        ArrayList<Alojamiento> alojamientos;
-        try {
-
-            fis = new FileInputStream("./ficheros/alojamientos/alojamientos.dat");
-            entrada = new ObjectInputStream(fis);
-            alojamientos = (ArrayList<Alojamiento>) entrada.readObject();
-            GestionAlojamientos.setAlojamientos(alojamientos);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-                if (entrada != null) {
-                    entrada.close();
-                }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    
-    private void guardarAlojamientos() {
-        FileOutputStream fos = null;
-        ObjectOutputStream salida = null;
-        try {
-            
-            fos = new FileOutputStream("./ficheros/usuarios/nGerentes.dat");
-            salida = new ObjectOutputStream(fos);
-            salida.writeObject(GestionAlojamientos.getAlojamientos());
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if(fos!=null) fos.close();
-                if(salida!=null) salida.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Usuarios.cargarUsuarios();
+        GestionAlojamientos.cargarAlojamientos();
     }
     
 
@@ -300,8 +188,8 @@ public class Login extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        guardarUsuarios();
-        guardarAlojamientos();
+        Usuarios.guardarUsuarios();
+        GestionAlojamientos.guardarAlojamientos();
     }//GEN-LAST:event_formWindowClosing
 
     /**

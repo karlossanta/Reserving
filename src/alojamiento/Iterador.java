@@ -9,6 +9,10 @@ public interface Iterador {
     Object siguiente() throws IndexOutOfBoundsException;
 
     boolean hayMas();
+    
+    Object anterior() throws IndexOutOfBoundsException;
+
+    boolean hayMasAtras();
 
     Object elementoActual() throws IndexOutOfBoundsException;
 }
