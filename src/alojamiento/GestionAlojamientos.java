@@ -32,21 +32,36 @@ public class GestionAlojamientos extends AlojamientoBuilder{
     } 
     
     //crear hotel
-    public static void crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
+    public static boolean crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
+        boolean correcto = false;
         Hotel hotel = new Hotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta );
-        alojamientos.add(hotel);
+        if (GestionAlojamientos.buscarAlojamiento(alojamientos, id) == null) {
+            alojamientos.add(hotel);
+            correcto = true;
+        }
+        return correcto;
     }
     
       //apartamento
-    public static void crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
+    public static boolean crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
+        boolean correcto = false;
         Apartamento apartamento = new Apartamento(id, direccion, plazas, mascotas, discapacitados, precio_noche, habitaciones, camas, aparcamiento);
-        alojamientos.add(apartamento);
+        if (GestionAlojamientos.buscarAlojamiento(alojamientos, id) == null){
+            alojamientos.add(apartamento);
+            correcto = true;
+        }
+        return correcto;
     }
     
     //casa rural
-    public static void crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
+    public static boolean crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
+        boolean correcto = false;
         CasaRural casaRural = new CasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, habitaciones, camas);
-        alojamientos.add(casaRural);
+        if (GestionAlojamientos.buscarAlojamiento(alojamientos, id) == null){
+            alojamientos.add(casaRural);
+            correcto = true;
+        }
+        return correcto;
     }
     
 //    public static Alojamiento crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float valoracion, float precio_noche, int estrellas, boolean pensionCompleta ){
@@ -60,23 +75,6 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         }
     }
     
-    public static boolean estaAlojamiento(ArrayList<Alojamiento> aux, Alojamiento alojamiento) {
-        // Crea el agregado.
-        Agregado agregado = new AgregadoConcreto(aux);
-        // Crea el iterador.
-        Iterador iterador = agregado.crearIterador();
-        boolean encontrado = false;
-        // Recorre la lista con el iterador.
-        while (iterador.hayMas() && !encontrado) {
-            Alojamiento aloj = (Alojamiento) iterador.elementoActual();
-            if(aloj.id == alojamiento.id){
-                encontrado = true;
-            }
-            iterador.siguiente();
-        }
-        return encontrado;
-    }
-    
     public  static Alojamiento buscarAlojamiento(ArrayList<Alojamiento> aux, String id) {
         // Crea el agregado.
         Agregado agregado = new AgregadoConcreto(aux);
@@ -87,7 +85,7 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         // Recorre la lista con el iterador.
         while (iterador.hayMas() && !encontrado) {
             Alojamiento aloj = (Alojamiento) iterador.elementoActual();
-            if(aloj.id == id){
+            if(aloj.id.equals(id)){
                 encontrado = true;
                 res = aloj;
             }
@@ -97,7 +95,7 @@ public class GestionAlojamientos extends AlojamientoBuilder{
     }
     
     public static void eliminarAlojamiento(Alojamiento alojamiento){
-        if(GestionAlojamientos.estaAlojamiento(alojamientos, alojamiento)){
+        if(GestionAlojamientos.alojamientos.contains(alojamiento)){
             alojamientos.remove(alojamiento);
         }
     }

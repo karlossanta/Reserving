@@ -32,6 +32,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         Usuarios.cargarUsuarios();
         GestionAlojamientos.cargarAlojamientos();
+        System.out.println(GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), "1"));
     }
     
 

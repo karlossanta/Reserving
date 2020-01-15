@@ -9,6 +9,7 @@ import alojamiento.GestionAlojamientos;
 import alojamiento.Hotel;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -240,7 +241,11 @@ public class CrearHotel extends javax.swing.JFrame {
         float precio_noche = Integer.parseInt(jTextField7.getText());
         int estrellas = Integer.parseInt(jTextField8.getText());
         boolean pensionCompleta = this.getjCheckBox(jCheckBox3);
-        GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta);
+        if (GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta)) {
+            JOptionPane.showMessageDialog(this, "Hotel añadido correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "El hotel ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed

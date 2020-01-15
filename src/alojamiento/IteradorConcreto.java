@@ -26,7 +26,7 @@ public class IteradorConcreto implements Iterador {
     @Override
     public Object siguiente() throws IndexOutOfBoundsException {
         Object objeto = null;
-        if (indice < agregado.elementos.size() - 1) {
+        if (indice < agregado.elementos.size()) {
             indice++;
             objeto = agregado.elementos.get(indice);
         } else {
@@ -49,7 +49,7 @@ public class IteradorConcreto implements Iterador {
     @Override
     public boolean hayMas() {
         boolean resultado = true;
-        if (agregado.elementos.isEmpty() || indice == agregado.elementos.size()) {
+        if (agregado.elementos.isEmpty() || indice == agregado.elementos.size() - 1) {
             resultado = false;
         }
         return resultado;
