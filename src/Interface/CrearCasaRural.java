@@ -8,6 +8,7 @@ package Interface;
 import alojamiento.GestionAlojamientos;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -264,7 +265,12 @@ public class CrearCasaRural extends javax.swing.JFrame {
         boolean barbacoa = this.getjCheckBox(jCheckBox4);
         int nHabitaciones = Integer.parseInt(jTextField10.getText());
         int nCamas = Integer.parseInt(jTextField11.getText());
-        GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, nHabitaciones, nCamas);
+        if (GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, nHabitaciones, nCamas)) {
+            JOptionPane.showMessageDialog(this, "casa rural añadida correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "La casa rural ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

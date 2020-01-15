@@ -6,6 +6,7 @@
 package Interface;
 
 import alojamiento.Alojamiento;
+import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.Usuario;
 import alojamiento.Usuarios;
@@ -32,6 +33,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         Usuarios.cargarUsuarios();
         GestionAlojamientos.cargarAlojamientos();
+        System.out.println(GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), "1"));
     }
     
 
@@ -156,7 +158,9 @@ public class Login extends javax.swing.JFrame {
                 vmag.setVisible(true);
                 this.setVisible(false);
             } else {
-                //TODO: ACCESO A LA APP CON PERMISOS DE CLIENTE
+                VMenuAlojamientoCliente vmac = new VMenuAlojamientoCliente(this, (Cliente) usuario);
+                vmac.setVisible(true);
+                this.setVisible(false);
             }                
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);

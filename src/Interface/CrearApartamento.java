@@ -8,6 +8,7 @@ package Interface;
 import alojamiento.GestionAlojamientos;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,8 +48,6 @@ public class CrearApartamento extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -84,8 +83,6 @@ public class CrearApartamento extends javax.swing.JFrame {
         jLabel6.setText("Mascotas");
 
         jLabel7.setText("Discapacitados");
-
-        jLabel8.setText("Valoración");
 
         jLabel9.setText("Precio/noche");
 
@@ -128,7 +125,6 @@ public class CrearApartamento extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel5)
                     .addComponent(jLabel10)
@@ -143,8 +139,7 @@ public class CrearApartamento extends javax.swing.JFrame {
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
@@ -190,10 +185,6 @@ public class CrearApartamento extends javax.swing.JFrame {
                             .addComponent(jCheckBox2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -212,7 +203,7 @@ public class CrearApartamento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jCheckBox3))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -230,7 +221,6 @@ public class CrearApartamento extends javax.swing.JFrame {
         jTextField3.setText("");
         jCheckBox1.setText("");
         jCheckBox2.setText("");
-        jTextField6.setText("");
         jTextField7.setText("");
         jTextField8.setText("");
         jTextField9.setText("");
@@ -247,7 +237,11 @@ public class CrearApartamento extends javax.swing.JFrame {
         int nHabitaciones = Integer.parseInt(jTextField8.getText());
         int nCamas = Integer.parseInt(jTextField8.getText());
         boolean aparcamiento = this.getjCheckBox(jCheckBox3);
-        GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, nHabitaciones, nCamas, aparcamiento);
+        if (GestionAlojamientos.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, nHabitaciones, nCamas, aparcamiento)) {
+            JOptionPane.showMessageDialog(this, "Apartamento añadido correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "El apartamento ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -290,12 +284,10 @@ public class CrearApartamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;

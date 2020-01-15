@@ -9,6 +9,7 @@ import alojamiento.AgregadoConcreto;
 import alojamiento.Alojamiento;
 import alojamiento.Apartamento;
 import alojamiento.CasaRural;
+import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.Hotel;
 import alojamiento.Iterador;
@@ -24,22 +25,33 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private JFrame ventanaAnt;
     AgregadoConcreto ac;
     Iterador iteradorAlojamientos;
+    Alojamiento alojamientoActual;
+    Cliente cliente;
     
     /**
      * Creates new form NewJFrame
      */
     public ConsultarAlojamientos(JFrame ventana) {
         initComponents();
+        cliente = null;
         this.ventanaAnt = ventana;
         iniciarIterador();
+    }
+    
+    public ConsultarAlojamientos(JFrame ventana, Cliente cliente) {
+        initComponents();
+        this.ventanaAnt = ventana;
+        iniciarIterador();
+        this.cliente=cliente;
+        jButton4.setText("Reservar");
     }
     
     private void iniciarIterador() {
         ac = new AgregadoConcreto(GestionAlojamientos.getAlojamientos());
         iteradorAlojamientos = ac.crearIterador();
         if (iteradorAlojamientos.hayMas()) {
-            Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.primero();
-            mostrarDatos(alojamiento);
+            alojamientoActual = (Alojamiento) iteradorAlojamientos.primero();
+            mostrarDatos(alojamientoActual);
         } else {
             JOptionPane.showMessageDialog(this, "No existen Alojamientos.");
         }
@@ -82,13 +94,13 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabel12.setVisible(true);
         jTextField11.setVisible(true);
         jLabel9.setText("Piscina:");
-        jTextField10.setText(casaRural.tienePiscina() ? "Si" : "No");
+        jTextField8.setText(casaRural.tienePiscina() ? "Si" : "No");
         jLabel10.setText("Barbacoa:");
-        jTextField10.setText(casaRural.tieneBarbacoa() ? "Si" : "No");
+        jTextField9.setText(casaRural.tieneBarbacoa() ? "Si" : "No");
         jLabel11.setText("Habitaciones:");
-        jTextField8.setText(String.valueOf(casaRural.getHabitaciones()));
+        jTextField10.setText(String.valueOf(casaRural.getHabitaciones()));
         jLabel12.setText("Camas:");
-        jTextField9.setText(String.valueOf(casaRural.getCamas()));
+        jTextField11.setText(String.valueOf(casaRural.getCamas()));
     }
     private void mostrarHotel(Hotel hotel) {
         jLabel11.setVisible(false);
@@ -98,7 +110,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabel9.setText("Estrellas:");
         jTextField8.setText(String.valueOf(hotel.getEstrellas()));
         jLabel10.setText("Pensión Completa:");
-        jTextField10.setText(hotel.tienePensionCompleta() ? "Si" : "No");
+        jTextField9.setText(hotel.tienePensionCompleta() ? "Si" : "No");
     }
 
     /**
@@ -138,6 +150,9 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabelTipoAlojamiento = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,62 +220,85 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabelTipoAlojamiento.setText("ALOJAMIENTO");
 
         jButton3.setText("Buscar Alojamiento");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Eliminar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(74, 74, 74))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(119, 119, 119))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabelDireccion)
-                                    .addComponent(jLabelID))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(119, 119, 119))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField6)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField8)
-                                    .addComponent(jTextField9)
-                                    .addComponent(jTextField10)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelTipoAlojamiento)
-                        .addGap(151, 151, 151))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabelDireccion)
+                                            .addComponent(jLabelID))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField1)
+                                            .addComponent(jTextField2)
+                                            .addComponent(jTextField3)
+                                            .addComponent(jTextField4)
+                                            .addComponent(jTextField5)
+                                            .addComponent(jTextField6)
+                                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel12))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField8)
+                                            .addComponent(jTextField9)
+                                            .addComponent(jTextField10)
+                                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabelTipoAlojamiento)
+                                .addGap(151, 151, 151))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField12))
+                            .addComponent(jButton3))
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,11 +351,16 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -338,8 +381,8 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (iteradorAlojamientos.hayMas()) {
-            Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.siguiente();
-            mostrarDatos(alojamiento);
+            alojamientoActual = (Alojamiento) iteradorAlojamientos.siguiente();
+            mostrarDatos(alojamientoActual);
         } else {
             JOptionPane.showMessageDialog(this, "No hay más alojamientos.");
         }
@@ -348,22 +391,41 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (iteradorAlojamientos.hayMasAtras()) {
-            Alojamiento alojamiento = (Alojamiento) iteradorAlojamientos.anterior();
-            mostrarDatos(alojamiento);
+            alojamientoActual = (Alojamiento) iteradorAlojamientos.anterior();
+            mostrarDatos(alojamientoActual);
         } else {
             JOptionPane.showMessageDialog(this, "No hay más alojamientos.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        if (cliente != null) {
+            GestionAlojamientos.eliminarAlojamiento(alojamientoActual);
+            iniciarIterador();
+        } else {
+           // TODO: RESERVAR ALOJAMIENTO CLIENTE
+        }
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        alojamientoActual = GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), jTextField12.getText());
+        mostrarDatos(alojamientoActual);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -377,6 +439,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
