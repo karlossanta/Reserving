@@ -5,6 +5,12 @@
  */
 package alojamiento;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -95,5 +101,63 @@ public class Usuarios implements Serializable{
         return usuarios.get(nombreUsuario);
     }
     
+    public static void cargarUsuarios() {
+        FileInputStream fis = null;
+        ObjectInputStream entrada = null;
+        HashMap<String, Usuario> usuarios;
+        int nGerentes;
+        try {
+
+            fis = new FileInputStream("./ficheros/usuarios/usuarios.dat");
+            entrada = new ObjectInputStream(fis);
+            usuarios = (HashMap<String, Usuario>) entrada.readObject();
+            Usuarios.setUsuarios(usuarios);
+            
+            fis = new FileInputStream("./ficheros/usuarios/nGerentes.dat");
+            nGerentes = (int) entrada.readObject();
+            Usuarios.setNGerentes(nGerentes);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (entrada != null) {
+                    entrada.close();
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    public static void guardarUsuarios() {
+        FileOutputStream fos = null;
+        ObjectOutputStream salida = null;
+        try {
+            fos = new FileOutputStream("./ficheros/usuarios/usuarios.dat");
+            salida = new ObjectOutputStream(fos);
+            salida.writeObject(Usuarios.getUsuarios());
+            
+            fos = new FileOutputStream("./ficheros/usuarios/nGerentes.dat");
+            salida = new ObjectOutputStream(fos);
+            salida.writeObject(Usuarios.getNGerentes());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if(fos!=null) fos.close();
+                if(salida!=null) salida.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
     
 }

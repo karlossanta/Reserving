@@ -34,11 +34,30 @@ public class IteradorConcreto implements Iterador {
         }
         return objeto;
     }
+    
+    public Object anterior() throws IndexOutOfBoundsException {
+        Object objeto = null;
+        if (indice > 0) {
+            objeto = agregado.elementos.get(indice);
+            indice--;
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+        return objeto;
+    }
 
     @Override
     public boolean hayMas() {
         boolean resultado = true;
         if (agregado.elementos.isEmpty() || indice == agregado.elementos.size()) {
+            resultado = false;
+        }
+        return resultado;
+    }
+    
+    public boolean hayMasAtras() {
+        boolean resultado = true;
+        if (agregado.elementos.isEmpty() || indice == 0) {
             resultado = false;
         }
         return resultado;

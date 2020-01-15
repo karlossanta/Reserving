@@ -5,6 +5,12 @@
  */
 package alojamiento;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,15 +18,11 @@ import java.util.ArrayList;
  *
  * @author Roberto
  */
-public class GestionAlojamientos implements Serializable{
-
-    private static AlojamientoBuilder alojamientoBuilder;
-    private static ArrayList<Alojamiento> alojamientos;
+public class GestionAlojamientos extends AlojamientoBuilder{
     
-
-    public static void setAlojamientoBuilder(AlojamientoBuilder ab){
-        alojamientoBuilder = ab;
-    }
+    private static ArrayList<Alojamiento> alojamientos = new ArrayList();
+    
+    
     
     public static ArrayList<Alojamiento> getAlojamientos() {
         return alojamientos;
@@ -30,19 +32,19 @@ public class GestionAlojamientos implements Serializable{
     } 
     
     //crear hotel
-    public static void crearHotel(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
-        Hotel hotel = alojamientoBuilder.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta );
+    public static void crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
+        Hotel hotel = new Hotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta );
         alojamientos.add(hotel);
     }
     
       //apartamento
-    public static void crearApartamento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
+    public static void crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
         Apartamento apartamento = new Apartamento(id, direccion, plazas, mascotas, discapacitados, precio_noche, habitaciones, camas, aparcamiento);
         alojamientos.add(apartamento);
     }
     
     //casa rural
-    public static void crearCasaRural(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
+    public static void crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
         CasaRural casaRural = new CasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, habitaciones, camas);
         alojamientos.add(casaRural);
     }
@@ -97,6 +99,59 @@ public class GestionAlojamientos implements Serializable{
     public static void eliminarAlojamiento(Alojamiento alojamiento){
         if(GestionAlojamientos.estaAlojamiento(alojamientos, alojamiento)){
             alojamientos.remove(alojamiento);
+        }
+    }
+    
+     
+    public static void cargarAlojamientos() {
+        FileInputStream fis = null;
+        ObjectInputStream entrada = null;
+        ArrayList<Alojamiento> alojamientos;
+        try {
+
+            fis = new FileInputStream("./ficheros/alojamientos/alojamientos.dat");
+            entrada = new ObjectInputStream(fis);
+            alojamientos = (ArrayList<Alojamiento>) entrada.readObject();
+            GestionAlojamientos.setAlojamientos(alojamientos);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                if (entrada != null) {
+                    entrada.close();
+                }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+    public static void guardarAlojamientos() {
+        FileOutputStream fos = null;
+        ObjectOutputStream salida = null;
+        try {
+            
+            fos = new FileOutputStream("./ficheros/alojamientos/alojamientos.dat");
+            salida = new ObjectOutputStream(fos);
+            salida.writeObject(GestionAlojamientos.getAlojamientos());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if(fos!=null) fos.close();
+                if(salida!=null) salida.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import alojamiento.GestionAlojamientos;
+import alojamiento.Usuarios;
 import javax.swing.JFrame;
 
 /**
@@ -42,6 +44,11 @@ public class VMenuAlojamientoGerente extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("RESERVING");
@@ -168,6 +175,12 @@ public class VMenuAlojamientoGerente extends javax.swing.JFrame {
         eu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        GestionAlojamientos.guardarAlojamientos();
+        Usuarios.guardarUsuarios();
+    }//GEN-LAST:event_formWindowClosing
 
     
     private void formWindowClosed(java.awt.event.WindowEvent evt) {                                  
