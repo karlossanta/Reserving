@@ -49,7 +49,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private void iniciarIterador() {
         ac = new AgregadoConcreto(GestionAlojamientos.getAlojamientos());
         iteradorAlojamientos = ac.crearIterador();
-        if (iteradorAlojamientos.hayMas()) {
+        if (iteradorAlojamientos.elementoActual() != null) {
             alojamientoActual = (Alojamiento) iteradorAlojamientos.primero();
             mostrarDatos(alojamientoActual);
         } else {
@@ -400,11 +400,13 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (cliente != null) {
+        if (cliente == null) {
             GestionAlojamientos.eliminarAlojamiento(alojamientoActual);
             iniciarIterador();
         } else {
-           // TODO: RESERVAR ALOJAMIENTO CLIENTE
+            VReserva vr = new VReserva(this, cliente, alojamientoActual);
+            vr.setVisible(true);
+            this.setVisible(false);
         }
         
     }//GEN-LAST:event_jButton4ActionPerformed

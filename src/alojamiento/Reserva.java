@@ -13,26 +13,26 @@ import java.util.Date;
 
 public class Reserva {
     
-    Cliente cliente;
-    Alojamiento alojamiento;
-    LocalDate fechaInicio;
-    LocalDate fechaFin;
-    int NOcupantes;
+    private Cliente cliente;
+    private Alojamiento alojamiento;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private int NOcupantes;
 
-//    public Reserva(Cliente cliente, Alojamiento alojamiento, Date fechaInicio, Date fechaFin, int NOcupantes) {
-//        this.cliente = cliente;
-//        this.alojamiento = alojamiento;
-//        this.fechaInicio = fechaInicio;
-//        this.fechaFin = fechaFin;
-//        this.NOcupantes = NOcupantes;
-//    }
-
-    public Reserva(Cliente cliente, Alojamiento alojamiento, LocalDate fechaInicio, int NOcupantes) {
+    public Reserva(Cliente cliente, Alojamiento alojamiento, Date fechaInicio, Date fechaFin, int NOcupantes) {
         this.cliente = cliente;
         this.alojamiento = alojamiento;
         this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.NOcupantes = NOcupantes;
     }
+
+//    public Reserva(Cliente cliente, Alojamiento alojamiento, LocalDate fechaInicio, int NOcupantes) {
+//        this.cliente = cliente;
+//        this.alojamiento = alojamiento;
+//        this.fechaInicio = fechaInicio;
+//        this.NOcupantes = NOcupantes;
+//    }
     
     public int getNOcupantes() {
         return NOcupantes;
@@ -58,7 +58,7 @@ public class Reserva {
         this.alojamiento = alojamiento;
     }
 
-    public LocalDate getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
@@ -70,15 +70,15 @@ public class Reserva {
 //        return fechaInicio;
 //    }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
+    public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
     

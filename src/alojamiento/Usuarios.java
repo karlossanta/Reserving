@@ -100,6 +100,15 @@ public class Usuarios implements Serializable{
     public static Usuario getUsuario(String nombreUsuario) {
         return usuarios.get(nombreUsuario);
     }
+    public static boolean existeUsuario(String usuario){
+        return usuarios.containsKey(usuario);
+    }
+    public static boolean esGerente(Usuario usuario) {
+        return usuario.getClass().getSimpleName().equals("Gerente");
+    }
+    public static boolean esGerente(String nombreUsuario) {
+        return esGerente(Usuarios.getUsuario(nombreUsuario));
+    }
     
     public static void cargarUsuarios() {
         FileInputStream fis = null;
