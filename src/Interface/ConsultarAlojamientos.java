@@ -9,6 +9,7 @@ import alojamiento.AgregadoConcreto;
 import alojamiento.Alojamiento;
 import alojamiento.Apartamento;
 import alojamiento.CasaRural;
+import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.Hotel;
 import alojamiento.Iterador;
@@ -25,14 +26,24 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     AgregadoConcreto ac;
     Iterador iteradorAlojamientos;
     Alojamiento alojamientoActual;
+    Cliente cliente;
     
     /**
      * Creates new form NewJFrame
      */
     public ConsultarAlojamientos(JFrame ventana) {
         initComponents();
+        cliente = null;
         this.ventanaAnt = ventana;
         iniciarIterador();
+    }
+    
+    public ConsultarAlojamientos(JFrame ventana, Cliente cliente) {
+        initComponents();
+        this.ventanaAnt = ventana;
+        iniciarIterador();
+        this.cliente=cliente;
+        jButton4.setText("Reservar");
     }
     
     private void iniciarIterador() {
@@ -83,13 +94,13 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabel12.setVisible(true);
         jTextField11.setVisible(true);
         jLabel9.setText("Piscina:");
-        jTextField10.setText(casaRural.tienePiscina() ? "Si" : "No");
+        jTextField8.setText(casaRural.tienePiscina() ? "Si" : "No");
         jLabel10.setText("Barbacoa:");
-        jTextField10.setText(casaRural.tieneBarbacoa() ? "Si" : "No");
+        jTextField9.setText(casaRural.tieneBarbacoa() ? "Si" : "No");
         jLabel11.setText("Habitaciones:");
-        jTextField8.setText(String.valueOf(casaRural.getHabitaciones()));
+        jTextField10.setText(String.valueOf(casaRural.getHabitaciones()));
         jLabel12.setText("Camas:");
-        jTextField9.setText(String.valueOf(casaRural.getCamas()));
+        jTextField11.setText(String.valueOf(casaRural.getCamas()));
     }
     private void mostrarHotel(Hotel hotel) {
         jLabel11.setVisible(false);
@@ -99,7 +110,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabel9.setText("Estrellas:");
         jTextField8.setText(String.valueOf(hotel.getEstrellas()));
         jLabel10.setText("Pensión Completa:");
-        jTextField10.setText(hotel.tienePensionCompleta() ? "Si" : "No");
+        jTextField9.setText(hotel.tienePensionCompleta() ? "Si" : "No");
     }
 
     /**
@@ -140,6 +151,8 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabelTipoAlojamiento = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,6 +220,11 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         jLabelTipoAlojamiento.setText("ALOJAMIENTO");
 
         jButton3.setText("Buscar Alojamiento");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Eliminar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +233,8 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("ID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -222,15 +242,6 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton3)
-                        .addGap(37, 37, 37)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +284,21 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
                                 .addGap(37, 37, 37))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabelTipoAlojamiento)
-                                .addGap(151, 151, 151))))))
+                                .addGap(151, 151, 151))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField12))
+                            .addComponent(jButton3))
+                        .addGap(37, 37, 37)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,7 +351,11 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -371,9 +400,20 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        GestionAlojamientos.eliminarAlojamiento(alojamientoActual);
-        iniciarIterador();
+        if (cliente != null) {
+            GestionAlojamientos.eliminarAlojamiento(alojamientoActual);
+            iniciarIterador();
+        } else {
+           // TODO: RESERVAR ALOJAMIENTO CLIENTE
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        alojamientoActual = GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), jTextField12.getText());
+        mostrarDatos(alojamientoActual);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -385,6 +425,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -398,6 +439,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
