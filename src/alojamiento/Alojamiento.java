@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author Roberto
  */
-public class Alojamiento implements Serializable {
+public abstract class Alojamiento {
+    
     String id;
     String direccion;
     int plazas;
