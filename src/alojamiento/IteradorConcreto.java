@@ -26,9 +26,9 @@ public class IteradorConcreto implements Iterador {
     @Override
     public Object siguiente() throws IndexOutOfBoundsException {
         Object objeto = null;
-        if (indice < agregado.elementos.size()) {
-            objeto = agregado.elementos.get(indice);
+        if (indice < agregado.elementos.size() - 1) {
             indice++;
+            objeto = agregado.elementos.get(indice);
         } else {
             throw new IndexOutOfBoundsException();
         }
@@ -38,8 +38,8 @@ public class IteradorConcreto implements Iterador {
     public Object anterior() throws IndexOutOfBoundsException {
         Object objeto = null;
         if (indice > 0) {
-            objeto = agregado.elementos.get(indice);
             indice--;
+            objeto = agregado.elementos.get(indice);
         } else {
             throw new IndexOutOfBoundsException();
         }
