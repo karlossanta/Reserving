@@ -5,6 +5,12 @@
  */
 package Interface;
 
+import alojamiento.Alojamiento;
+import alojamiento.Cliente;
+import alojamiento.GestionAlojamientos;
+import alojamiento.Usuarios;
+import java.util.Date;
+
 /**
  *
  * @author karlos
@@ -153,13 +159,7 @@ public class ConsultarReservas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cliente usuario = (Cliente) Usuarios.getUsuario(jTextField2.getText()) ;
-        Alojamiento aloj = GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), jTextField1.getText());
-        Date fechaInicio = this.getjSpinnerFecha(jSpinner1);
-        Date fechaFin = this.getjSpinnerFecha(jSpinner2);
-        int ocupantes = Integer.parseInt(jTextField3.getText());
-        Reserva r = GestionReservas.crearReserva(usuario, aloj, fechaInicio, fechaFin, ocupantes);
-        GestionReservas.reservar(r);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
