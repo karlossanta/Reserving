@@ -5,6 +5,11 @@
  */
 package alojamiento;
 
+import FactoryAlojaminentos.FactoryAlojamiento;
+import FactoryAlojaminentos.Alojamiento;
+import FactoryAlojaminentos.Apartamento;
+import FactoryAlojaminentos.Hotel;
+import FactoryAlojaminentos.CasaRural;
 import Iterator.Iterador;
 import Iterator.AgregadoConcreto;
 import Iterator.Agregado;
@@ -14,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -67,11 +71,6 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         }
         return correcto;
     }
-    
-//    public static Alojamiento crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float valoracion, float precio_noche, int estrellas, boolean pensionCompleta ){
-//        Alojamiento aloj = alojamientoBuilder.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta);
-//        return aloj;
-//    }
 
     public static void añadirAlojamiento(Alojamiento alojamiento){
         if(!GestionAlojamientos.alojamientos.contains(alojamiento)){
@@ -96,14 +95,14 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         Alojamiento aloj = (Alojamiento) iterador.elementoActual();
         // Recorre la lista con el iterador.
         while (iterador.hayMas() && !encontrado) {
-            if(aloj.id.equals(id)){
+            if(aloj.getId().equals(id)){
                 encontrado = true;
                 res = aloj;
             }
             iterador.siguiente();
         }
         aloj = (Alojamiento) iterador.elementoActual();
-        if(aloj.id.equals(id)){
+        if(aloj.getId().equals(id)){
             encontrado = true;
             res = aloj;
         }

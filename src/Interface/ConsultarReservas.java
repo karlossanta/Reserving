@@ -5,7 +5,7 @@
  */
 package Interface;
 
-import alojamiento.Alojamiento;
+import FactoryAlojaminentos.Alojamiento;
 import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.Usuarios;
