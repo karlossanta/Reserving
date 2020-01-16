@@ -5,6 +5,9 @@
  */
 package alojamiento;
 
+import Iterator.Iterador;
+import Iterator.AgregadoConcreto;
+import Iterator.Agregado;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,6 +24,7 @@ import java.util.ArrayList;
 public class GestionAlojamientos extends AlojamientoBuilder{
     
     private static ArrayList<Alojamiento> alojamientos = new ArrayList();
+    private static FactoryAlojamiento fa;
     
     
     
@@ -34,7 +38,7 @@ public class GestionAlojamientos extends AlojamientoBuilder{
     //crear hotel
     public static boolean crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
         boolean correcto = false;
-        Hotel hotel = new Hotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta );
+        Hotel hotel = fa.crearHotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta);
         if (GestionAlojamientos.buscarAlojamiento(alojamientos, id) == null) {
             alojamientos.add(hotel);
             correcto = true;
@@ -45,7 +49,7 @@ public class GestionAlojamientos extends AlojamientoBuilder{
       //apartamento
     public static boolean crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
         boolean correcto = false;
-        Apartamento apartamento = new Apartamento(id, direccion, plazas, mascotas, discapacitados, precio_noche, habitaciones, camas, aparcamiento);
+        Apartamento apartamento = fa.crearApartamento(id, direccion, plazas, mascotas, discapacitados, precio_noche, habitaciones, camas, aparcamiento);
         if (GestionAlojamientos.buscarAlojamiento(alojamientos, id) == null){
             alojamientos.add(apartamento);
             correcto = true;
@@ -56,7 +60,7 @@ public class GestionAlojamientos extends AlojamientoBuilder{
     //casa rural
     public static boolean crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
         boolean correcto = false;
-        CasaRural casaRural = new CasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, habitaciones, camas);
+        CasaRural casaRural = fa.crearCasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, habitaciones, camas);
         if (GestionAlojamientos.buscarAlojamiento(alojamientos, id) == null){
             alojamientos.add(casaRural);
             correcto = true;
