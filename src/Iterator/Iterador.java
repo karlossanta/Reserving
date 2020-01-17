@@ -14,5 +14,7 @@ public interface Iterador {
 
     boolean hayMasAtras();
 
+    boolean estaVacio();
+    
     Object elementoActual() throws IndexOutOfBoundsException;
 }

@@ -35,6 +35,7 @@ public class IteradorConcreto implements Iterador {
         return objeto;
     }
     
+    @Override
     public Object anterior() throws IndexOutOfBoundsException {
         Object objeto = null;
         if (indice > 0) {
@@ -55,6 +56,7 @@ public class IteradorConcreto implements Iterador {
         return resultado;
     }
     
+    @Override
     public boolean hayMasAtras() {
         boolean resultado = true;
         if (agregado.elementos.isEmpty() || indice == 0) {
@@ -72,5 +74,10 @@ public class IteradorConcreto implements Iterador {
             throw new IndexOutOfBoundsException();
         }
         return objeto;
+    }
+    
+    @Override
+    public boolean estaVacio() {
+        return agregado.elementos.isEmpty();
     }
 }
