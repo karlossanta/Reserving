@@ -5,14 +5,14 @@
  */
 package Interface;
 
-import alojamiento.AgregadoConcreto;
+import Iterator.AgregadoConcreto;
+import Iterator.Iterador;
 import alojamiento.Alojamiento;
 import alojamiento.Apartamento;
 import alojamiento.CasaRural;
 import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.Hotel;
-import alojamiento.Iterador;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

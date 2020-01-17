@@ -5,6 +5,9 @@
  */
 package alojamiento;
 
+import State.Estado;
+import State.EstadoAceptado;
+
 
 /**
  *
@@ -18,13 +21,15 @@ public class Cliente extends Usuario{
         this.apellidos = apellidos;
         this.email = email;
         this.telefono = telefono;
+        aceptado = false;
     }
     
     private String nombre;
     private String apellidos;
     private String email;
     private String telefono;
-    private boolean aceptado = false;
+    private boolean aceptado;
+    private Estado estadoActual;
     
     /**
      * Get the value of aceptado
@@ -40,8 +45,10 @@ public class Cliente extends Usuario{
      *
      * @param aceptado new value of aceptado?
      */
-    public void setAceptado(boolean aceptado) {
-        this.aceptado  = aceptado;
+    public void aceptar() {
+        this.aceptado  = true;
+        this.estadoActual = new EstadoAceptado();
+        estadoActual.ejecutar(this);
     }
 
     
@@ -124,6 +131,11 @@ public class Cliente extends Usuario{
      */
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email + ", telefono=" + telefono + ", aceptado=" + aceptado + '}';
     }
 
     

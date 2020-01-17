@@ -13,7 +13,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  *
@@ -37,7 +36,7 @@ public class Usuarios implements Serializable{
     /**
      * Set the value of usuarios
      *
-     * @param the value of usuarios
+     * @param usuarios
      */
     public static void setUsuarios(HashMap<String, Usuario> usuarios) {
         Usuarios.usuarios = usuarios;
@@ -55,7 +54,7 @@ public class Usuarios implements Serializable{
     /**
      * Set the value of usuarios
      *
-     * @param the value of usuarios
+     * @param nGerentes
      */
     public static void setNGerentes(int nGerentes) {
         Usuarios.nGerentes = nGerentes;
