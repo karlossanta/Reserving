@@ -5,8 +5,8 @@
  */
 package alojamiento;
 
-import State.Estado;
-import State.EstadoAceptado;
+import StateUsuario.Estado;
+import StateUsuario.EstadoAceptado;
 
 
 /**
