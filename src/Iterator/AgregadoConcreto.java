@@ -1,7 +1,6 @@
 package Iterator;
 
 //iterator
-import Iterator.Agregado;
 import java.util.ArrayList;
 
 public class AgregadoConcreto implements Agregado {
