@@ -6,7 +6,7 @@
 package Interface;
 
 import alojamiento.GestionAlojamientos;
-import alojamiento.Hotel;
+import FactoryAlojaminentos.Hotel;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

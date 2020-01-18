@@ -5,7 +5,7 @@
  */
 package Interface;
 
-import alojamiento.Alojamiento;
+import FactoryAlojaminentos.Alojamiento;
 import alojamiento.GestionAlojamientos;
 import java.util.ArrayList;
 import javax.swing.JFrame;

@@ -164,9 +164,9 @@ public class VMenuAlojamientoGerente extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-            NuevoUsuario nu = new NuevoUsuario(true, this);
-            nu.setVisible(true);
-            this.setVisible(false);
+        NuevoUsuario nu = new NuevoUsuario(true, this);
+        nu.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -178,8 +178,8 @@ public class VMenuAlojamientoGerente extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        GestionAlojamientos.guardarAlojamientos();
-        Usuarios.guardarUsuarios();
+//        GestionAlojamientos.guardarAlojamientos();
+//        Usuarios.guardarUsuarios();
     }//GEN-LAST:event_formWindowClosing
 
     

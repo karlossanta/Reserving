@@ -5,7 +5,11 @@
  */
 package alojamiento;
 
-import Factory.FactoryAlojamiento;
+import FactoryAlojaminentos.FactoryAlojamiento;
+import FactoryAlojaminentos.Alojamiento;
+import FactoryAlojaminentos.Apartamento;
+import FactoryAlojaminentos.Hotel;
+import FactoryAlojaminentos.CasaRural;
 import Iterator.Iterador;
 import Iterator.AgregadoConcreto;
 import Iterator.Agregado;
@@ -66,11 +70,6 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         }
         return correcto;
     }
-    
-//    public static Alojamiento crearAlojamiento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float valoracion, float precio_noche, int estrellas, boolean pensionCompleta ){
-//        Alojamiento aloj = alojamientoBuilder.crearAlojamiento(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta);
-//        return aloj;
-//    }
 
     public static void añadirAlojamiento(Alojamiento alojamiento){
         if(!GestionAlojamientos.alojamientos.contains(alojamiento)){
@@ -95,14 +94,14 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         Alojamiento aloj = (Alojamiento) iterador.elementoActual();
         // Recorre la lista con el iterador.
         while (iterador.hayMas() && !encontrado) {
-            if(aloj.id.equals(id)){
+            if(aloj.getId().equals(id)){
                 encontrado = true;
                 res = aloj;
             }
             iterador.siguiente();
         }
         aloj = (Alojamiento) iterador.elementoActual();
-        if(aloj.id.equals(id)){
+        if(aloj.getId().equals(id)){
             encontrado = true;
             res = aloj;
         }
@@ -116,55 +115,77 @@ public class GestionAlojamientos extends AlojamientoBuilder{
     }
     
      
-    public static void cargarAlojamientos() {
-        FileInputStream fis = null;
-        ObjectInputStream entrada = null;
-        ArrayList<Alojamiento> alojamientos;
-        try {
-
-            fis = new FileInputStream("./ficheros/alojamientos/alojamientos.dat");
-            entrada = new ObjectInputStream(fis);
-            alojamientos = (ArrayList<Alojamiento>) entrada.readObject();
-            GestionAlojamientos.setAlojamientos(alojamientos);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (fis != null) {
-                    fis.close();
-                }
-                if (entrada != null) {
-                    entrada.close();
-                }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    
-    public static void guardarAlojamientos() {
-        FileOutputStream fos = null;
-        ObjectOutputStream salida = null;
-        try {
-            
-            fos = new FileOutputStream("./ficheros/alojamientos/alojamientos.dat");
-            salida = new ObjectOutputStream(fos);
-            salida.writeObject(GestionAlojamientos.getAlojamientos());
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if(fos!=null) fos.close();
-                if(salida!=null) salida.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+//    public static void cargarAlojamientos() {
+//        FileInputStream fis = null;
+//        ObjectInputStream entrada = null;
+//        ArrayList<Alojamiento> alojamientos;
+//        try {
+//
+//            fis = new FileInputStream("./ficheros/alojamientos/alojamientos.dat");
+//            entrada = new ObjectInputStream(fis);
+//            alojamientos = (ArrayList<Alojamiento>) entrada.readObject();
+//            GestionAlojamientos.setAlojamientos(alojamientos);
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } catch (ClassNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            try {
+//                if (fis != null) {
+//                    fis.close();
+//                }
+//                if (entrada != null) {
+//                    entrada.close();
+//                }
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
+//    
+//    public static void guardarAlojamientos() {
+//        FileOutputStream fos = null;
+//        ObjectOutputStream salida = null;
+//        try {
+//            
+//            fos = new FileOutputStream("./ficheros/alojamientos/alojamientos.dat");
+//            salida = new ObjectOutputStream(fos);
+//            salida.writeObject(GestionAlojamientos.getAlojamientos());
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            try {
+//                if(fos!=null) fos.close();
+//                if(salida!=null) salida.close();
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
+//    
+//    public static void guardarAlojamientos() {
+//        FileOutputStream fos = null;
+//        ObjectOutputStream salida = null;
+//        try {
+//            
+//            fos = new FileOutputStream("./ficheros/alojamientos/alojamientos.dat");
+//            salida = new ObjectOutputStream(fos);
+//            salida.writeObject(GestionAlojamientos.getAlojamientos());
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            try {
+//                if(fos!=null) fos.close();
+//                if(salida!=null) salida.close();
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
 }
