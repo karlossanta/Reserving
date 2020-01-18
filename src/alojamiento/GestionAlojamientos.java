@@ -91,20 +91,22 @@ public class GestionAlojamientos extends AlojamientoBuilder{
         Iterador iterador = agregado.crearIterador();
         boolean encontrado = false;
         Alojamiento res = null;
-        Alojamiento aloj = (Alojamiento) iterador.elementoActual();
-        // Recorre la lista con el iterador.
-        while (iterador.hayMas() && !encontrado) {
+        if (!iterador.estaVacio()) {
+            Alojamiento aloj = (Alojamiento) iterador.elementoActual();
             if(aloj.getId().equals(id)){
                 encontrado = true;
                 res = aloj;
             }
-            iterador.siguiente();
+            // Recorre la lista con el iterador.
+            while (iterador.hayMas() && !encontrado) {
+                if(aloj.getId().equals(id)){
+                    encontrado = true;
+                    res = aloj;
+                }
+                iterador.siguiente();
+            }
         }
-        aloj = (Alojamiento) iterador.elementoActual();
-        if(aloj.getId().equals(id)){
-            encontrado = true;
-            res = aloj;
-        }
+        
         return res;
     }
     
