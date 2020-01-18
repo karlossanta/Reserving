@@ -25,7 +25,7 @@ import java.util.ArrayList;
  *
  * @author Roberto
  */
-public class GestionAlojamientos extends AlojamientoBuilder{
+public class GestionAlojamientos {
     
     private static ArrayList<Alojamiento> alojamientos = new ArrayList();
     

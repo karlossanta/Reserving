@@ -6,12 +6,13 @@
 package StateUsuario;
 
 import alojamiento.Cliente;
+import java.io.Serializable;
 
 /**
  *
  * @author karlos
  */
-public class EstadoAceptado implements Estado {
+public class EstadoAceptado implements Estado{
 
     @Override
     public void ejecutar(Cliente c) {

@@ -270,7 +270,7 @@ public class CrearCasaRural extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "La casa rural ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+        Login.guardarDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

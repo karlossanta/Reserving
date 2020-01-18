@@ -25,5 +25,4 @@ public class FactoryAlojamiento {
         CasaRural casaRural = new CasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, habitaciones, camas);
         return casaRural;
     }
-    
 }
