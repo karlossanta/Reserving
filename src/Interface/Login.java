@@ -5,24 +5,14 @@
  */
 package Interface;
 
-import FactoryAlojaminentos.Alojamiento;
 import Memento.Conserje;
 import Memento.Originador;
 import Memento.Recuerdo;
 import alojamiento.Cliente;
-import alojamiento.Gerente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.GestionReservas;
 import alojamiento.Usuario;
 import alojamiento.Usuarios;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,8 +22,8 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     
-    private Originador originador;
-    private Conserje conserje;
+    private static Originador originador;
+    private static Conserje conserje;
     /**
      * Creates new form Login2
      */
@@ -210,24 +200,40 @@ public class Login extends javax.swing.JFrame {
         originador.cargarUsuarios(conserje.getRecuerdo(2));
     }
     
-    public void guardarDatos(){
-        
-        
+    public static void guardarUsuarios(){
+        Originador originador = new Originador();   //originador
+        Conserje conserje = new Conserje(); //conserje
         Recuerdo r1 = originador.crearRecuerdo();
-        r1.setAlojamientosR(GestionAlojamientos.getAlojamientos());
-        originador.guardarAlojamiento(r1);
-        conserje.setRecuerdo(r1);
-        
         Recuerdo r2 = originador.crearRecuerdo();
-        r2.setReservasR(GestionReservas.getReservas());
-        originador.guardarReserva(r2);
-        conserje.setRecuerdo(r2);
-        
+        conserje.insertar(r1, 0);
+        conserje.insertar(r2, 1);
+   
         Recuerdo r3 = originador.crearRecuerdo();
         r3.setUsuariosR(Usuarios.getUsuarios());
         r3.setNgerenteR(Usuarios.getNGerentes());
         originador.guardarUsuarios(r3);
-        conserje.setRecuerdo(r3);
+        conserje.insertar(r3, 2);
+    }
+    
+    public static void guardarDatos(){
+        //guardarAlojamiento
+        Recuerdo r1 = originador.crearRecuerdo();
+        r1.setAlojamientosR(GestionAlojamientos.getAlojamientos());
+        originador.guardarAlojamiento(r1);
+        conserje.insertar(r1, 0);
+        
+        //guardarReservas
+        Recuerdo r2 = originador.crearRecuerdo();
+        r2.setReservasR(GestionReservas.getReservas());
+        originador.guardarReserva(r2);
+        conserje.insertar(r2, 1);;
+        
+        //guardarUsuarios
+        Recuerdo r3 = originador.crearRecuerdo();
+        r3.setUsuariosR(Usuarios.getUsuarios());
+        r3.setNgerenteR(Usuarios.getNGerentes());
+        originador.guardarUsuarios(r3);
+        conserje.insertar(r3, 2);
     }
     /**
      * @param args the command line arguments

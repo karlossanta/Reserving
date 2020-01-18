@@ -6,12 +6,13 @@
 package StateUsuario;
 
 import alojamiento.Cliente;
+import java.io.Serializable;
 
 /**
  *
  * @author karlos
  */
-public interface Estado {
+public interface Estado extends Serializable{
 
     /**
      * Modifica el estado del objeto

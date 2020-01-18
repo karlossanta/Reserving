@@ -6,6 +6,7 @@
 package alojamiento;
 
 import FactoryAlojaminentos.Alojamiento;
+import Interface.Login;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -119,6 +120,7 @@ public class GestionReservas {
     
     public static void reservar(Reserva res){
         reservas.add(res);
+        Login.guardarDatos();
     }
     //Devuelve 0 si no existe la reserva
     public static int getDiasReserva(Reserva reserva) {

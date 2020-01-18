@@ -1,8 +1,10 @@
 
 package FactoryAlojaminentos;
 
+import java.io.Serializable;
 
-public class CasaRural  extends Alojamiento{
+
+public class CasaRural  extends Alojamiento implements Serializable{
     boolean piscina;
     boolean barbacoa;
     int habitaciones;

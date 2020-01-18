@@ -1,7 +1,9 @@
 
 package FactoryAlojaminentos;
 
-public class Apartamento extends Alojamiento{
+import java.io.Serializable;
+
+public class Apartamento extends Alojamiento implements Serializable{
     int habitaciones;
     int camas;
     boolean aparcamiento;

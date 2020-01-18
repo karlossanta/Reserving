@@ -136,6 +136,7 @@ public class VCrearMenu extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
+        Login.guardarDatos();
         ventanaAnt.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_formWindowClosing

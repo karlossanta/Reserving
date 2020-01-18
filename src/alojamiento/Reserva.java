@@ -6,13 +6,14 @@
 package alojamiento;
 
 import FactoryAlojaminentos.Alojamiento;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Reserva {
+public class Reserva implements Serializable{
     
     private Cliente cliente;
     private Alojamiento alojamiento;

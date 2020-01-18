@@ -25,7 +25,6 @@ public class Recuerdo implements Serializable{
     private ArrayList<Alojamiento> alojamientosR;
     private ArrayList<Reserva> reservasR;
     private HashMap<String, Usuario> usuariosR;
-    private String ruta;
     private int NgerenteR;
     
     
@@ -54,14 +53,6 @@ public class Recuerdo implements Serializable{
 
     public void setUsuariosR(HashMap<String, Usuario> usuariosR) {
         this.usuariosR = usuariosR;
-    }
-
-    public String getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
     }
 
     public int getNgerenteR() {

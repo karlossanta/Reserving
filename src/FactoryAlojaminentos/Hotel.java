@@ -5,11 +5,13 @@
  */
 package FactoryAlojaminentos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Roberto
  */
-public class Hotel extends Alojamiento {
+public class Hotel extends Alojamiento implements Serializable {
      int estrellas;
      boolean pensionCompleta;
 
