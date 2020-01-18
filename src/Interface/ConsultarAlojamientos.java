@@ -6,13 +6,17 @@
 package Interface;
 
 import Iterator.AgregadoConcreto;
-import FactoryAlojaminentos.Alojamiento;
-import FactoryAlojaminentos.Apartamento;
-import FactoryAlojaminentos.CasaRural;
+import Iterator.Iterador;
+import Strategy.Contexto;
+import Strategy.Estrategia;
+import Strategy.EstrategiaConcretaCliente;
+import Strategy.EstrategiaConcretaGerente;
+import alojamiento.Alojamiento;
+import alojamiento.Apartamento;
+import alojamiento.CasaRural;
 import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
-import FactoryAlojaminentos.Hotel;
-import Iterator.Iterador;
+import alojamiento.Hotel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -27,6 +31,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     Iterador iteradorAlojamientos;
     Alojamiento alojamientoActual;
     Cliente cliente;
+    Contexto ctx;
     
     /**
      * Creates new form NewJFrame
@@ -36,6 +41,9 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         cliente = null;
         this.ventanaAnt = ventana;
         iniciarIterador();
+        Estrategia est = new EstrategiaConcretaGerente();
+        ctx = new Contexto(est, this);
+        ctx.ejecutaEstrategia();
     }
     
     public ConsultarAlojamientos(JFrame ventana, Cliente cliente) {
@@ -43,13 +51,22 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         this.ventanaAnt = ventana;
         iniciarIterador();
         this.cliente=cliente;
+        Estrategia est = new EstrategiaConcretaCliente();
+        ctx = new Contexto(est, this);
+        ctx.ejecutaEstrategia();
+    }
+    
+    public void botonCliente() {
         jButton4.setText("Reservar");
+    }
+    public void botonGerente() {
+        jButton4.setText("Eliminar");
     }
     
     private void iniciarIterador() {
         ac = new AgregadoConcreto(GestionAlojamientos.getAlojamientos());
         iteradorAlojamientos = ac.crearIterador();
-        if (iteradorAlojamientos.elementoActual() != null) {
+        if (!iteradorAlojamientos.estaVacio()) {
             alojamientoActual = (Alojamiento) iteradorAlojamientos.primero();
             mostrarDatos(alojamientoActual);
         } else {

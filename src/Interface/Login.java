@@ -10,6 +10,7 @@ import Memento.Conserje;
 import Memento.Originador;
 import Memento.Recuerdo;
 import alojamiento.Cliente;
+import alojamiento.Gerente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.GestionReservas;
 import alojamiento.Usuario;
