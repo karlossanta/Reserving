@@ -34,9 +34,6 @@ public class Login extends javax.swing.JFrame {
         this.originador = new Originador();   //originador
         this.conserje = new Conserje(); //conserje
         this.cargarDatos();
-        UsuarioGeneral ug = new UsuarioGeneral("g1","pass1");
-        UsuarioGerente g1 = new UsuarioGerente(ug);
-        Usuarios.altaGerente(g1);
     }
     
 

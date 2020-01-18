@@ -5,11 +5,11 @@
  */
 package Interface;
 
+import Decorator.Usuario;
+import Decorator.UsuarioCliente;
 import Iterator.AgregadoConcreto;
 import Iterator.Iterador;
-import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
-import alojamiento.Usuario;
 import alojamiento.Usuarios;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,9 +25,9 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     private JFrame ventanaAnt;
     AgregadoConcreto ac;
     Iterador iteradorUsuarios;
-    ArrayList<Cliente> clientes;
+    ArrayList<UsuarioCliente> clientes;
     HashMap<String, Usuario> noAceptados; 
-    Cliente cliente;
+    UsuarioCliente cliente;
     
     /**
      * Creates new form NewJFrame
@@ -45,14 +45,14 @@ public class AceptarUsuarios extends javax.swing.JFrame {
         iteradorUsuarios = ac.crearIterador();
         if (!iteradorUsuarios.estaVacio()) {
             System.out.println(iteradorUsuarios.primero());
-            cliente = (Cliente) iteradorUsuarios.primero();
+            cliente = (UsuarioCliente) iteradorUsuarios.primero();
             mostrarDatos(cliente);
         } else {
             JOptionPane.showMessageDialog(this, "No existen Usuarios.");
         }
     }
     
-    private void mostrarDatos(Cliente cliente) {
+    private void mostrarDatos(UsuarioCliente cliente) {
         jTextField3.setText(cliente.getNombre());
         jTextField4.setText(cliente.getApellidos());
         jTextField5.setText(cliente.getEmail());
@@ -64,7 +64,7 @@ public class AceptarUsuarios extends javax.swing.JFrame {
         Object[] copiaObj = copiaAux.values().toArray();
         Usuario[] copiaUsuarios = new Usuario[copiaObj.length];
         ArrayList<Usuario> aux = new ArrayList<Usuario>();
-        ArrayList<Cliente> auxCliente = new ArrayList<Cliente>();
+        ArrayList<UsuarioCliente> auxCliente = new ArrayList<UsuarioCliente>();
         for (int i = 0; i < copiaObj.length; i++) {
             copiaUsuarios[i] = (Usuario) copiaObj[i]; 
         }
@@ -73,7 +73,7 @@ public class AceptarUsuarios extends javax.swing.JFrame {
         }
         for (int i = 0; i < aux.size(); i++) {
             if(!Usuarios.esGerente(aux.get(i))){
-                Cliente cli = (Cliente) aux.get(i);
+                UsuarioCliente cli = (UsuarioCliente) aux.get(i);
                 if(!cli.isAceptado()){
                     auxCliente.add(cli); 
                 }
@@ -229,7 +229,7 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (iteradorUsuarios.hayMas()) {
-            cliente = (Cliente) iteradorUsuarios.siguiente();
+            cliente = (UsuarioCliente) iteradorUsuarios.siguiente();
             mostrarDatos(cliente);
         } else {
             JOptionPane.showMessageDialog(this, "No hay más usuarios.");
@@ -239,7 +239,7 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (iteradorUsuarios.hayMasAtras()) {
-            cliente = (Cliente) iteradorUsuarios.anterior();
+            cliente = (UsuarioCliente) iteradorUsuarios.anterior();
             mostrarDatos(cliente);
         } else {
             JOptionPane.showMessageDialog(this, "No hay más usuarios.");
@@ -247,7 +247,7 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Cliente cli = (Cliente) iteradorUsuarios.elementoActual();
+        UsuarioCliente cli = (UsuarioCliente) iteradorUsuarios.elementoActual();
         cli.aceptar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
