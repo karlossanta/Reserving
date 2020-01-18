@@ -5,13 +5,15 @@
  */
 package Interface;
 
+import Decorator.Usuario;
+import Decorator.UsuarioCliente;
+import Decorator.UsuarioGeneral;
+import Decorator.UsuarioGerente;
 import Memento.Conserje;
 import Memento.Originador;
 import Memento.Recuerdo;
-import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.GestionReservas;
-import alojamiento.Usuario;
 import alojamiento.Usuarios;
 import javax.swing.JOptionPane;
 
@@ -32,6 +34,9 @@ public class Login extends javax.swing.JFrame {
         this.originador = new Originador();   //originador
         this.conserje = new Conserje(); //conserje
         this.cargarDatos();
+        UsuarioGeneral ug = new UsuarioGeneral("g1","pass1");
+        UsuarioGerente g1 = new UsuarioGerente(ug);
+        Usuarios.altaGerente(g1);
     }
     
 
@@ -151,12 +156,13 @@ public class Login extends javax.swing.JFrame {
         if (Usuarios.validarUsuario(nombreUsuario, contrasenna)){
             Usuario usuario = Usuarios.getUsuario(nombreUsuario);
             System.out.println(usuario.getClass().getSimpleName());
-            if (usuario.getClass().getSimpleName().equals("Gerente")) {
+            if (usuario.getClass().getSimpleName().equals("UsuarioGerente")) {
                 VMenuAlojamientoGerente vmag = new VMenuAlojamientoGerente(this);
                 vmag.setVisible(true);
                 this.setVisible(false);
             } else {
-                VMenuAlojamientoCliente vmac = new VMenuAlojamientoCliente(this, (Cliente) usuario);
+                VMenuAlojamientoCliente vmac;
+                vmac = new VMenuAlojamientoCliente(this, (UsuarioCliente) usuario);
                 vmac.setVisible(true);
                 this.setVisible(false);
             }                
@@ -200,7 +206,7 @@ public class Login extends javax.swing.JFrame {
         originador.cargarUsuarios(conserje.getRecuerdo(2));
     }
         
-    public static void guardarDatos(){
+    private void guardarDatos(){
         //guardarAlojamiento
         Recuerdo r1 = originador.crearRecuerdo();
         r1.setAlojamientosR(GestionAlojamientos.getAlojamientos());

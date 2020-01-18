@@ -5,8 +5,9 @@
  */
 package Interface;
 
-import alojamiento.Cliente;
-import alojamiento.Gerente;
+import Decorator.UsuarioCliente;
+import Decorator.UsuarioGeneral;
+import Decorator.UsuarioGerente;
 import alojamiento.Usuarios;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,6 +23,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
     
     /**
      * Creates new form NewJFrame
+     * @param permisosGerente
+     * @param ventanaAnterior
      */
     public NuevoUsuario(boolean permisosGerente, JFrame ventanaAnterior) {
         initComponents();
@@ -197,7 +200,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
         String nombreUsuario = jTextFieldUsuario.getText();
         String contrasenna = String.copyValueOf(jPasswordFieldContrasenna.getPassword());
         if (jCheckBox1.isSelected()) {
-            Gerente g = new Gerente(nombreUsuario, contrasenna);
+            UsuarioGeneral ug = new UsuarioGeneral(nombreUsuario, contrasenna);
+            UsuarioGerente g = new UsuarioGerente(ug);
             Usuarios.altaGerente(g);
             //TODO: AVISAR CUANDO NO SE CREA EL GERENTE PORQUE YA HAY 3
             //TODO: AVISAR CUANDO NO SE CREA EL USUARIO POR CUALQUIER PROBLEMA
@@ -206,7 +210,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
             String apellidos = jTextFieldApellidos.getText();
             String email = jTextFieldEmail.getText();
             String telefono = jTextFieldTelefono.getText();
-            Cliente c = new Cliente(nombre, apellidos, email, telefono, nombreUsuario, contrasenna);
+            UsuarioGeneral ug = new UsuarioGeneral(nombreUsuario, contrasenna);
+            UsuarioCliente c = new UsuarioCliente(nombre, apellidos, email, telefono, ug);
             Usuarios.altaCliente(c);
         }
         JOptionPane.showMessageDialog(this, "Usuario creado correctamente.");

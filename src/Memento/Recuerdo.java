@@ -1,10 +1,10 @@
 package Memento;
 
+import Decorator.Usuario;
 import FactoryAlojaminentos.Alojamiento;
 import alojamiento.GestionAlojamientos;
 import alojamiento.GestionReservas;
 import alojamiento.Reserva;
-import alojamiento.Usuario;
 import alojamiento.Usuarios;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

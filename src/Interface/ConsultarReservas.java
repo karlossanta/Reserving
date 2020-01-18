@@ -6,7 +6,6 @@
 package Interface;
 
 import FactoryAlojaminentos.Alojamiento;
-import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.Usuarios;
 import java.util.Date;

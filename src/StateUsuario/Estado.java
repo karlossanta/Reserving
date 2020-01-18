@@ -5,7 +5,7 @@
  */
 package StateUsuario;
 
-import alojamiento.Cliente;
+import Decorator.UsuarioCliente;
 import java.io.Serializable;
 
 /**
@@ -19,5 +19,5 @@ public interface Estado extends Serializable{
      *
      * @param c
      */
-    public void ejecutar(Cliente c);
+    public void ejecutar(UsuarioCliente c);
 }

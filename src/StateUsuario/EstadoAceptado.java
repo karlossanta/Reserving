@@ -5,7 +5,7 @@
  */
 package StateUsuario;
 
-import alojamiento.Cliente;
+import Decorator.UsuarioCliente;
 import java.io.Serializable;
 
 /**
@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class EstadoAceptado implements Estado{
 
     @Override
-    public void ejecutar(Cliente c) {
+    public void ejecutar(UsuarioCliente c) {
         System.out.println("Enviar Email a " + c.getEmail() + " usuario validado");
     }
     

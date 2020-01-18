@@ -5,8 +5,8 @@
  */
 package Interface;
 
+import Decorator.UsuarioCliente;
 import FactoryAlojaminentos.Alojamiento;
-import alojamiento.Cliente;
 import alojamiento.GestionAlojamientos;
 import alojamiento.GestionReservas;
 import alojamiento.Reserva;
@@ -27,7 +27,7 @@ import javax.swing.JTextField;
 public class VReserva extends javax.swing.JFrame {
 
     private static JFrame ventanaAnt;
-    Cliente cliente = null;
+    UsuarioCliente cliente = null;
     Alojamiento alojamiento = null;
     
     /**
@@ -39,7 +39,7 @@ public class VReserva extends javax.swing.JFrame {
         setTitle("Reservar Alojamiento");
         setLocationRelativeTo(null);
     }
-    public VReserva(JFrame ventana, Cliente cliente) {
+    public VReserva(JFrame ventana, UsuarioCliente cliente) {
         initComponents();
         this.ventanaAnt = ventana;
         setTitle("Reservar Alojamiento");
@@ -48,7 +48,7 @@ public class VReserva extends javax.swing.JFrame {
         jTextField2.setText(cliente.getUsuario());
         jTextField2.setEnabled(false);
     }
-    public VReserva(JFrame ventana, Cliente cliente, Alojamiento alojamiento) {
+    public VReserva(JFrame ventana, UsuarioCliente cliente, Alojamiento alojamiento) {
         initComponents();
         this.ventanaAnt = ventana;
         setTitle("Reservar Alojamiento");
@@ -196,7 +196,7 @@ public class VReserva extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Cliente usuario = (Cliente) Usuarios.getUsuario(jTextField2.getText()) ;
+        UsuarioCliente usuario = (UsuarioCliente) Usuarios.getUsuario(jTextField2.getText()) ;
         Alojamiento aloj = GestionAlojamientos.buscarAlojamiento(GestionAlojamientos.getAlojamientos(), jTextField1.getText());
         Date fechaInicio = this.getjSpinnerFecha(jSpinner1);
         Date fechaFin = this.getjSpinnerFecha(jSpinner2);

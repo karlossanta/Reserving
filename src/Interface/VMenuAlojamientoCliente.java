@@ -5,7 +5,7 @@
  */
 package Interface;
 
-import alojamiento.Cliente;
+import Decorator.UsuarioCliente;
 import javax.swing.JFrame;
 
 /**
@@ -15,12 +15,12 @@ import javax.swing.JFrame;
 public class VMenuAlojamientoCliente extends javax.swing.JFrame {
 
     private JFrame ventanaAnt;
-    private Cliente cliente;
+    private UsuarioCliente cliente;
     
     /**
      * Creates new form VMenuAlojamientoCliente
      */
-    public VMenuAlojamientoCliente(JFrame ventanaAnt, Cliente cliente) {
+    public VMenuAlojamientoCliente(JFrame ventanaAnt, UsuarioCliente cliente) {
         initComponents();
         this.ventanaAnt = ventanaAnt;
         this.cliente = cliente;

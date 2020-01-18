@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package alojamiento;
+package Decorator;
 
 import StateUsuario.Estado;
 import StateUsuario.EstadoAceptado;
 
-
 /**
- *
- * @author karlos
+ * Decorador concreto.
  */
-public class Cliente extends Usuario{
+public class UsuarioCliente extends Decorador {
 
-    public Cliente(String nombre, String apellidos, String email, String telefono, String usuario, String contrasenna) {
-        super(usuario, contrasenna);
+    public UsuarioCliente(String nombre, String apellidos, String email, String telefono, Usuario usuario) {
+        super(usuario);
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -137,6 +130,4 @@ public class Cliente extends Usuario{
     public String toString() {
         return "Cliente{" + "nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email + ", telefono=" + telefono + ", aceptado=" + aceptado + '}';
     }
-
-    
 }
