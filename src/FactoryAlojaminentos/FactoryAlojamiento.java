@@ -11,17 +11,17 @@ package FactoryAlojaminentos;
  */
 public class FactoryAlojamiento {
     
-    public Apartamento crearApartamento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
+    public static Apartamento crearApartamento(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int habitaciones, int camas, boolean aparcamiento){
         Apartamento apartamento = new Apartamento(id, direccion, plazas, mascotas, discapacitados, precio_noche, habitaciones, camas, aparcamiento);
         return apartamento;
     }
     
-    public Hotel crearHotel(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
+    public static Hotel crearHotel(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, int estrellas, boolean pensionCompleta ){
         Hotel hotel = new Hotel(id, direccion, plazas, mascotas, discapacitados, precio_noche, estrellas, pensionCompleta );
         return hotel;
     }
     
-    public CasaRural crearCasaRural(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
+    public static CasaRural crearCasaRural(String id, String direccion, int plazas, boolean mascotas, boolean discapacitados, float precio_noche, boolean piscina, boolean barbacoa, int habitaciones, int camas){
         CasaRural casaRural = new CasaRural(id, direccion, plazas, mascotas, discapacitados, precio_noche, piscina, barbacoa, habitaciones, camas);
         return casaRural;
     }
