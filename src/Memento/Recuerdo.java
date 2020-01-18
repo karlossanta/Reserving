@@ -31,27 +31,6 @@ public class Recuerdo implements Serializable{
     
     public Recuerdo(){
     }
-
-    public Recuerdo(String ruta) {
-        this.ruta = ruta;
-    }
-
-    public Recuerdo(String ruta, ArrayList<Alojamiento> alojamientosR) {
-        this.ruta = ruta;
-        this.alojamientosR = alojamientosR;
-    }
-
-    public Recuerdo(ArrayList<Reserva> reservasR, String ruta) {
-        this.reservasR = reservasR;
-        this.ruta = ruta;
-    }
-
-    public Recuerdo(HashMap<String, Usuario> usuariosR, int NgerenteR, String ruta) {
-        this.usuariosR = usuariosR;
-        this.ruta = ruta;
-        this.NgerenteR = NgerenteR;
-    }
-
     
     public ArrayList<Alojamiento> getAlojamientosR() {
         return alojamientosR;

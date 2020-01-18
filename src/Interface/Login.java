@@ -208,11 +208,6 @@ public class Login extends javax.swing.JFrame {
         originador.cargarAlojamientos(conserje.getRecuerdo(0));
         originador.cargarReserva(conserje.getRecuerdo(1));
         originador.cargarUsuarios(conserje.getRecuerdo(2));
-        
-//        originador.setRecuerdo(GestionAlojamientos.getAlojamientos(), conserje.getRecuerdo(0));
-//        originador.setRecuerdo(conserje.getRecuerdo(1), GestionReservas.getReservas());
-//        originador.setRecuerdo(Usuarios.getUsuarios(), conserje.getRecuerdo(2));
-//        originador.setRecuerdo(Usuarios.getNGerentes(), conserje.getRecuerdo(3));
     }
     
     public void guardarDatos(){
@@ -233,11 +228,6 @@ public class Login extends javax.swing.JFrame {
         r3.setNgerenteR(Usuarios.getNGerentes());
         originador.guardarUsuarios(r3);
         conserje.setRecuerdo(r3);
-        
-//        originador.setRecuerdo(GestionAlojamientos.getAlojamientos(), originador.crearRecuerdo());
-//        originador.setRecuerdo(originador.crearRecuerdo(), GestionReservas.getReservas());
-//        originador.setRecuerdo(Usuarios.getUsuarios(), originador.crearRecuerdo());
-//        originador.setRecuerdo(Usuarios.getNGerentes(), originador.crearRecuerdo());
     }
     /**
      * @param args the command line arguments
