@@ -5,10 +5,16 @@
  */
 package Interface;
 
+import Decorator.UsuarioCliente;
 import FactoryAlojaminentos.Alojamiento;
 import alojamiento.GestionAlojamientos;
+import alojamiento.GestionReservas;
+import alojamiento.Reserva;
 import alojamiento.Usuarios;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,11 +22,44 @@ import java.util.Date;
  */
 public class ConsultarReservas extends javax.swing.JFrame {
 
+    private static JFrame ventanaAnt;
+    private UsuarioCliente cliente = null;
+    private ArrayList<Reserva> reservas;
+    private int index = 0;
+    
     /**
      * Creates new form ConsultarReservas
+     * @param ventana
+     * @param cliente
      */
-    public ConsultarReservas() {
+    public ConsultarReservas(JFrame ventana, UsuarioCliente cliente) {
         initComponents();
+        this.ventanaAnt = ventana;
+        this.reservas = GestionReservas.getReservasAlojamiento(cliente);
+        setTitle("Consultar Reservas");
+        this.cliente = cliente;
+        mostrarDatos();
+    }
+    
+    private void mostrarDatos() {
+        jTextField2.setText(cliente.getUsuario());
+        jTextField2.setEnabled(false);
+        jTextField3.setEnabled(false);
+        jTextField1.setEnabled(false);
+        jSpinner1.setEnabled(false);
+        jSpinner2.setEnabled(false);
+        if (!this.reservas.isEmpty()) {
+            mostrarDatosReserva(this.reservas.get(0));
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay reservas.");
+        }
+    }
+    
+    private void mostrarDatosReserva(Reserva reserva) {
+        jTextField1.setText(reserva.getAlojamiento().getId());
+        jTextField3.setText(String.valueOf(reserva.getNOcupantes()));
+        jSpinner1.setValue(reserva.getFechaInicio());
+        jSpinner2.setValue(reserva.getFechaFin());
     }
 
     /**
@@ -46,7 +85,12 @@ public class ConsultarReservas extends javax.swing.JFrame {
         jSpinner2 = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel4.setText("Alojamiento");
 
@@ -68,14 +112,14 @@ public class ConsultarReservas extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Entrada");
 
-        jButton1.setText("RESERVAR");
+        jButton1.setText("<");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("ELIMINAR");
+        jButton2.setText(">");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -95,7 +139,7 @@ public class ConsultarReservas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -151,6 +195,7 @@ public class ConsultarReservas extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -158,49 +203,28 @@ public class ConsultarReservas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        if (index > 0 && !this.reservas.isEmpty()) {
+            index--;
+            mostrarDatosReserva(this.reservas.get(index));
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay mas reservas.");
+        }  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
+        if (index < (reservas.size() - 1) && !this.reservas.isEmpty()) {
+            index++;
+            mostrarDatosReserva(this.reservas.get(index));
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay mas reservas.");
+        }       
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarReservas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarReservas().setVisible(true);
-            }
-        });
-    }
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        ventanaAnt.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

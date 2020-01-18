@@ -3,13 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/ALOJAMIENTO.java</file>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/Gerente.java</file>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/NuevoUsuario.java</file>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/Cliente.java</file>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/Login.java</file>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/Usuario.java</file>
-            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/ALOJAMIENTO/src/alojamiento/Usuarios.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/VReserva.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/alojamiento/Reserva.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Decorator/Usuario.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/StateUsuario/EstadoAceptado.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/NuevoUsuario.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Decorator/UsuarioCliente.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/alojamiento/ALOJAMIENTO_MAIN.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Memento/Recuerdo.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/alojamiento/Usuarios.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/AceptarUsuarios.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/StateUsuario/Estado.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/Login.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Decorator/UsuarioGerente.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Decorator/UsuarioGeneral.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/ConsultarReservas.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/ConsultarAlojamientos.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/alojamiento/GestionReservas.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Interface/VMenuAlojamientoCliente.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Decorator/Decorador.java</file>
+            <file>file:/C:/Users/karlos/Documents/NetBeansProjects/Reserving/src/Memento/Originador.java</file>
         </group>
     </open-files>
 </project-private>

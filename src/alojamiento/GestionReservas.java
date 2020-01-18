@@ -74,11 +74,17 @@ public class GestionReservas {
         return reservasAlojamiento;
     }
     public static ArrayList<Reserva> getReservasAlojamiento(UsuarioCliente cliente) {
+        for (int i = 0; i < reservas.size(); i++) {
+            System.out.println(reservas.get(i).getCliente().getUsuario());
+        }
         ArrayList<Reserva> reservasAlojamiento = new ArrayList<>();
         for (int i = 0; i < reservas.size(); i++) {
-            if (reservas.get(i).getAlojamiento().equals(cliente)) {
+            if (reservas.get(i).getCliente().getUsuario().equals(cliente.getUsuario())) {
                 reservasAlojamiento.add(reservas.get(i));
             }
+        }
+        for (int i = 0; i < reservasAlojamiento.size(); i++) {
+            System.out.println(reservasAlojamiento.get(i).getCliente().getUsuario());
         }
         return reservasAlojamiento;
     }
