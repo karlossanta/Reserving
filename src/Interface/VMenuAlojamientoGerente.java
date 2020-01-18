@@ -43,7 +43,7 @@ public class VMenuAlojamientoGerente extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -178,15 +178,13 @@ public class VMenuAlojamientoGerente extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-//        GestionAlojamientos.guardarAlojamientos();
-//        Usuarios.guardarUsuarios();
+        this.setVisible(false);
+        ventanaAnt.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     
     private void formWindowClosed(java.awt.event.WindowEvent evt) {                                  
         // TODO add your handling code here:
-        this.setVisible(false);
-        ventanaAnt.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

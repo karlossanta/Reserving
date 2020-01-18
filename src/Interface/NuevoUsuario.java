@@ -209,7 +209,6 @@ public class NuevoUsuario extends javax.swing.JFrame {
             Cliente c = new Cliente(nombre, apellidos, email, telefono, nombreUsuario, contrasenna);
             Usuarios.altaCliente(c);
         }
-        Login.guardarDatos();
         JOptionPane.showMessageDialog(this, "Usuario creado correctamente.");
     }//GEN-LAST:event_jButton1ActionPerformed
 

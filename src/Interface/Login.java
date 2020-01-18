@@ -226,7 +226,7 @@ public class Login extends javax.swing.JFrame {
         Recuerdo r2 = originador.crearRecuerdo();
         r2.setReservasR(GestionReservas.getReservas());
         originador.guardarReserva(r2);
-        conserje.insertar(r2, 1);;
+        conserje.insertar(r2, 1);
         
         //guardarUsuarios
         Recuerdo r3 = originador.crearRecuerdo();

@@ -120,7 +120,6 @@ public class GestionReservas {
     
     public static void reservar(Reserva res){
         reservas.add(res);
-        Login.guardarDatos();
     }
     //Devuelve 0 si no existe la reserva
     public static int getDiasReserva(Reserva reserva) {

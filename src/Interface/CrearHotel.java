@@ -246,7 +246,6 @@ public class CrearHotel extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "El hotel ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        Login.guardarDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
