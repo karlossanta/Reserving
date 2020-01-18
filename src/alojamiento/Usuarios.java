@@ -5,6 +5,9 @@
  */
 package alojamiento;
 
+import Decorator.Usuario;
+import Decorator.UsuarioCliente;
+import Decorator.UsuarioGerente;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -60,7 +63,7 @@ public class Usuarios implements Serializable{
         Usuarios.nGerentes = nGerentes;
     }
     
-    public static boolean altaCliente(Cliente cliente) {
+    public static boolean altaCliente(UsuarioCliente cliente) {
         boolean correcto = false;
         if(!usuarios.containsKey(cliente.getUsuario())){
             usuarios.put(cliente.getUsuario(), cliente);
@@ -68,7 +71,7 @@ public class Usuarios implements Serializable{
         }
         return correcto;
     }
-    public static boolean altaGerente(Gerente gerente) {
+    public static boolean altaGerente(UsuarioGerente gerente) {
         boolean correcto = false;
         if (nGerentes < 3 && !usuarios.containsKey(gerente.getUsuario())) {
             nGerentes++;
@@ -103,7 +106,7 @@ public class Usuarios implements Serializable{
         return usuarios.containsKey(usuario);
     }
     public static boolean esGerente(Usuario usuario) {
-        return usuario.getClass().getSimpleName().equals("Gerente");
+        return usuario.getClass().getSimpleName().equals("UsuarioGerente");
     }
     public static boolean esGerente(String nombreUsuario) {
         return esGerente(Usuarios.getUsuario(nombreUsuario));

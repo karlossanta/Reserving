@@ -5,23 +5,20 @@
  */
 package alojamiento;
 
+import Decorator.UsuarioCliente;
 import FactoryAlojaminentos.Alojamiento;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Reserva implements Serializable{
     
-    private Cliente cliente;
+    private UsuarioCliente cliente;
     private Alojamiento alojamiento;
     private Date fechaInicio;
     private Date fechaFin;
     private int NOcupantes;
 
-    public Reserva(Cliente cliente, Alojamiento alojamiento, Date fechaInicio, Date fechaFin, int NOcupantes) {
+    public Reserva(UsuarioCliente cliente, Alojamiento alojamiento, Date fechaInicio, Date fechaFin, int NOcupantes) {
         this.cliente = cliente;
         this.alojamiento = alojamiento;
         this.fechaInicio = fechaInicio;
@@ -44,11 +41,11 @@ public class Reserva implements Serializable{
         this.NOcupantes = NOcupantes;
     }
     
-    public Cliente getCliente() {
+    public UsuarioCliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(UsuarioCliente cliente) {
         this.cliente = cliente;
     }
 

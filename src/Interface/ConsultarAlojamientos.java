@@ -14,7 +14,8 @@ import Strategy.EstrategiaConcretaGerente;
 import FactoryAlojaminentos.Alojamiento;
 import FactoryAlojaminentos.Apartamento;
 import FactoryAlojaminentos.CasaRural;
-import alojamiento.Cliente;
+import Decorator.UsuarioGeneral;
+import Decorator.UsuarioCliente;
 import alojamiento.GestionAlojamientos;
 import FactoryAlojaminentos.Hotel;
 import javax.swing.JFrame;
@@ -30,7 +31,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
     AgregadoConcreto ac;
     Iterador iteradorAlojamientos;
     Alojamiento alojamientoActual;
-    Cliente cliente;
+    UsuarioCliente cliente;
     Contexto ctx;
     
     /**
@@ -46,7 +47,7 @@ public class ConsultarAlojamientos extends javax.swing.JFrame {
         ctx.ejecutaEstrategia();
     }
     
-    public ConsultarAlojamientos(JFrame ventana, Cliente cliente) {
+    public ConsultarAlojamientos(JFrame ventana, UsuarioCliente cliente) {
         initComponents();
         this.ventanaAnt = ventana;
         iniciarIterador();

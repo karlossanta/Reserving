@@ -5,8 +5,8 @@
  */
 package alojamiento;
 
+import Decorator.UsuarioCliente;
 import FactoryAlojaminentos.Alojamiento;
-import Interface.Login;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -73,7 +73,7 @@ public class GestionReservas {
         }
         return reservasAlojamiento;
     }
-    public static ArrayList<Reserva> getReservasAlojamiento(Cliente cliente) {
+    public static ArrayList<Reserva> getReservasAlojamiento(UsuarioCliente cliente) {
         ArrayList<Reserva> reservasAlojamiento = new ArrayList<>();
         for (int i = 0; i < reservas.size(); i++) {
             if (reservas.get(i).getAlojamiento().equals(cliente)) {
@@ -94,7 +94,7 @@ public class GestionReservas {
     }
     
     
-    public static Reserva crearReserva(Cliente cliente, Alojamiento alojamiento, Date fechaInicio, Date fechaFin, int ocupantes){
+    public static Reserva crearReserva(UsuarioCliente cliente, Alojamiento alojamiento, Date fechaInicio, Date fechaFin, int ocupantes){
         Reserva reserva = null;
         if (GestionAlojamientos.existeAlojamiento(alojamiento)) {
             if (Usuarios.existeUsuario(cliente.getUsuario()) && !Usuarios.esGerente(cliente)) {
