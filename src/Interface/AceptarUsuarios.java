@@ -25,7 +25,7 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     private JFrame ventanaAnt;
     AgregadoConcreto ac;
     Iterador iteradorUsuarios;
-    ArrayList<Usuario> usuariosArray;
+    ArrayList<Cliente> clientes;
     HashMap<String, Usuario> noAceptados; 
     Cliente cliente;
     
@@ -40,16 +40,8 @@ public class AceptarUsuarios extends javax.swing.JFrame {
         iniciarIterador();
     }
     
-//    public AceptarUsuarios(JFrame ventana, Cliente cliente) {
-//        initComponents();
-//        this.ventanaAnt = ventana;
-//        iniciarIterador();
-//        this.cliente=cliente;
-//    }
-    
-    
     private void iniciarIterador() {
-        ac = new AgregadoConcreto(usuariosArray);
+        ac = new AgregadoConcreto(clientes);
         iteradorUsuarios = ac.crearIterador();
         if (!iteradorUsuarios.estaVacio()) {
             System.out.println(iteradorUsuarios.primero());
@@ -69,42 +61,28 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     
     public void inicializarUsuarios(){
         HashMap<String, Usuario> copiaAux = (HashMap<String, Usuario>) Usuarios.getUsuarios().clone();
-        System.out.println(copiaAux);
-        System.out.println("value  "+copiaAux.values());
-        System.out.println("array  "+copiaAux.values().toArray());
-        Usuario[] copia = (Usuario[]) copiaAux.values().toArray();
-        System.out.println(copia);
+        Object[] copiaObj = copiaAux.values().toArray();
+        Usuario[] copiaUsuarios = new Usuario[copiaObj.length];
         ArrayList<Usuario> aux = new ArrayList<Usuario>();
-        for (int i = 0; i < copia.length; i++) {
-            aux.add(copia[i]);
+        ArrayList<Cliente> auxCliente = new ArrayList<Cliente>();
+        for (int i = 0; i < copiaObj.length; i++) {
+            copiaUsuarios[i] = (Usuario) copiaObj[i]; 
         }
-        for (int i = 0; i < copiaAux.size(); i++) {
-            if(aux.get(i).getClass().equals("Cliente")){
-                if(!Usuarios.esGerente(aux.get(i))){
-                    usuariosArray.add(aux.get(i));
+        for (int i = 0; i < copiaUsuarios.length; i++) {
+            aux.add(copiaUsuarios[i]);
+        }
+        for (int i = 0; i < aux.size(); i++) {
+            if(!Usuarios.esGerente(aux.get(i))){
+                Cliente cli = (Cliente) aux.get(i);
+                if(!cli.isAceptado()){
+                    auxCliente.add(cli); 
                 }
             }
         }
+        this.clientes = auxCliente;
     }
     
-//    public void inicializarUsuarios(){
-//
-////        HashMap<String, Usuario> aux = new HashMap<> (); 
-//        HashMap<String, Usuario> copia = (HashMap<String, Usuario>) Usuarios.getUsuarios().clone();
-//        ArrayList<Usuario> aux = (ArrayList<Usuario>) copia.values().toArray();
-//        for (int i = 1; i <= copia.size(); i++) {
-//            System.out.print(copia.getClass());
-////            System.out.print("copia.get"+copia.get(i));
-////            System.out.print(copia.get(i).getUsuario());
-////            System.out.print(copia.get(i).getUsuario().getClass().getSimpleName());
-////            if(copia.get(i).getUsuario().getClass().getSimpleName().equals("Cliente") ){
-////                if(!((Cliente) copia.get(i)).isAceptado()){
-////                    aux.put(cliente.getUsuario(), cliente);
-////                }
-////            }
-//        }
-////        this.noAceptados = aux;
-//    }
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -269,7 +247,8 @@ public class AceptarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Usuario aux = (Usuario) iteradorUsuarios.elementoActual();
+        Cliente cli = (Cliente) iteradorUsuarios.elementoActual();
+        cli.aceptar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
