@@ -199,22 +199,7 @@ public class Login extends javax.swing.JFrame {
         originador.cargarReserva(conserje.getRecuerdo(1));
         originador.cargarUsuarios(conserje.getRecuerdo(2));
     }
-    
-    public static void guardarUsuarios(){
-        Originador originador = new Originador();   //originador
-        Conserje conserje = new Conserje(); //conserje
-        Recuerdo r1 = originador.crearRecuerdo();
-        Recuerdo r2 = originador.crearRecuerdo();
-        conserje.insertar(r1, 0);
-        conserje.insertar(r2, 1);
-   
-        Recuerdo r3 = originador.crearRecuerdo();
-        r3.setUsuariosR(Usuarios.getUsuarios());
-        r3.setNgerenteR(Usuarios.getNGerentes());
-        originador.guardarUsuarios(r3);
-        conserje.insertar(r3, 2);
-    }
-    
+        
     public static void guardarDatos(){
         //guardarAlojamiento
         Recuerdo r1 = originador.crearRecuerdo();

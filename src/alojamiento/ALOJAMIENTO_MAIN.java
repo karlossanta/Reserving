@@ -42,7 +42,6 @@ public class ALOJAMIENTO_MAIN {
                 
         x1.aceptar();
         
-        Login.guardarUsuarios();
         System.out.println(x1.toString());
         
         
