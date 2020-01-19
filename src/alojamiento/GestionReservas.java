@@ -22,7 +22,7 @@ import java.util.Date;
  */
 public class GestionReservas {
     
-    private static ArrayList<Reserva> reservas = new ArrayList<>();
+    private static ArrayList<Reserva> reservas = new ArrayList();
 
     /**
      * Get the value of reservas
