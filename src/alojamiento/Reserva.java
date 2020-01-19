@@ -25,13 +25,6 @@ public class Reserva implements Serializable{
         this.fechaFin = fechaFin;
         this.NOcupantes = NOcupantes;
     }
-
-//    public Reserva(Cliente cliente, Alojamiento alojamiento, LocalDate fechaInicio, int NOcupantes) {
-//        this.cliente = cliente;
-//        this.alojamiento = alojamiento;
-//        this.fechaInicio = fechaInicio;
-//        this.NOcupantes = NOcupantes;
-//    }
     
     public int getNOcupantes() {
         return NOcupantes;
@@ -61,14 +54,6 @@ public class Reserva implements Serializable{
         return fechaInicio;
     }
 
-//    public String getFechaInicio() {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//	Calendar cal = Calendar.getInstance();
-//        fechaInicio = dateFormat.format(cal);
-////	System.out.println(dateFormat.format(cal)); 
-//        return fechaInicio;
-//    }
-
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
@@ -80,12 +65,5 @@ public class Reserva implements Serializable{
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
-//    public long calcularTiempo(){
-//        long duracionMs = fechaFin.getTime() - fechaInicio.getTime();
-//        long dias = duracionMs / (1000 * 60 * 60 * 24);
-//        return dias;
-//    }
-
     
 }

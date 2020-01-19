@@ -110,6 +110,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = jTextField1.getText();
         if (Usuarios.bajaUsuario(usuario)) {
+//            Usuarios.bajaUsuario(usuario);
             JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente.");
         } else {
             JOptionPane.showMessageDialog(this, "Ha habido algún problema eliminando el usuario, es posible que no exista.", "Error", JOptionPane.ERROR_MESSAGE);
