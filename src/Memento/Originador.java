@@ -14,12 +14,6 @@ import java.util.HashMap;
  */
 public class Originador {
 
-    private ArrayList<Alojamiento> alojamientosR;
-    private ArrayList<Reserva> reservasR;
-    private HashMap<String, Usuario> usuariosR;
-    private String ruta;
-    private int NgerenteR;
-
     public void cargarAlojamientos(Recuerdo recuerdo){
         recuerdo.cargarAlojamientos();
     }
