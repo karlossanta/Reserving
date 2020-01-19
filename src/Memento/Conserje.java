@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Conserje {
 
-    private ArrayList<Recuerdo> recuerdos = new ArrayList<>();
+    private ArrayList<Recuerdo> recuerdos = new ArrayList();
 
 
     public void setRecuerdo(Recuerdo recuerdo) {
@@ -12,7 +12,7 @@ public class Conserje {
     }
     
     public void insertar(Recuerdo recuerdo, int indice){
-        ArrayList<Recuerdo> aux= new ArrayList<>();
+        ArrayList<Recuerdo> aux= new ArrayList();
         for (int i=0; i < this.recuerdos.size(); i++) {
             if (indice == i){
                 aux.add(recuerdo);

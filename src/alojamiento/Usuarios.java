@@ -24,7 +24,7 @@ import java.util.HashMap;
 public class Usuarios implements Serializable{
     
     // Arraylist que almacena todos los usuarios del sistema
-    private static HashMap<String, Usuario> usuarios = new HashMap<>();
+    private static HashMap<String, Usuario> usuarios = new HashMap();
     private static int nGerentes = 0;
     
     /**
